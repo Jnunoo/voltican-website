@@ -32,7 +32,7 @@ export const caseStudies: CaseStudy[] = [
     tags: ["GenAI", "SAP S/4HANA", "Azure OpenAI", "Finance Automation"],
     readTime: "6 min read",
     date: "March 2026",
-    heroColor: "#0a2240",
+    heroColor: "#003e6a",
     image: "/cs-energy.png",
   },
   {
@@ -52,7 +52,7 @@ export const caseStudies: CaseStudy[] = [
     tags: ["Agentic AI", "Supply Chain", "Predictive Analytics", "Microsoft Azure"],
     readTime: "7 min read",
     date: "February 2026",
-    heroColor: "#001a3a",
+    heroColor: "#0a4a7a",
     image: "/cs-supply-chain.png",
   },
   {
@@ -72,7 +72,7 @@ export const caseStudies: CaseStudy[] = [
     tags: ["Healthcare AI", "Azure Synapse", "Data Governance", "Predictive Analytics"],
     readTime: "8 min read",
     date: "January 2026",
-    heroColor: "#0a1f3a",
+    heroColor: "#003e6a",
     image: "/cs-healthcare.png",
   },
   {
@@ -92,7 +92,7 @@ export const caseStudies: CaseStudy[] = [
     tags: ["Data Modernization", "Snowflake", "Manufacturing AI", "OEE Analytics"],
     readTime: "5 min read",
     date: "December 2025",
-    heroColor: "#0d1f35",
+    heroColor: "#0a3d5c",
     image: "/cs-manufacturing.png",
   },
 ];

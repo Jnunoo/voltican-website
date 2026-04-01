@@ -20,7 +20,7 @@ export default function CaseStudiesPage() {
             <div className="h-px w-8 bg-slate-300" />
             <span className="text-slate-400 text-xs font-semibold tracking-[0.2em] uppercase">Client Work</span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-[#001f3d] tracking-tight leading-tight max-w-3xl mb-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-[#003e6a] tracking-tight leading-tight max-w-3xl mb-4">
             Outcomes that speak<br className="hidden md:block" /> for themselves
           </h1>
           <p className="text-slate-500 text-lg leading-relaxed max-w-2xl">
@@ -105,7 +105,7 @@ export default function CaseStudiesPage() {
           </div>
 
           {/* CTA footer */}
-          <div className="mt-16 bg-[#001f3d] rounded-2xl p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="mt-16 bg-[#003e6a] rounded-2xl p-10 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h3 className="text-xl font-bold text-white mb-1">Ready to be our next success story?</h3>
               <p className="text-white/55 text-sm">Book a free AI Readiness Assessment and discover what&apos;s possible.</p>

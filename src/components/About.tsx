@@ -66,7 +66,7 @@ export default function About() {
     <section
       id="about"
       className="min-h-screen py-20 lg:py-28 flex flex-col justify-center"
-      style={{ background: "linear-gradient(135deg, #003e6a 0%, #00284a 60%, #001d36 100%)" }}
+      style={{ background: "linear-gradient(135deg, #0a67c7 0%, #003e6a 55%, #002d5a 100%)" }}
     >
       <div className="mx-auto max-w-7xl px-6">
         {/* Heading */}
@@ -91,7 +91,7 @@ export default function About() {
         </motion.div>
 
         {/* 3-column layout */}
-        <div className="grid lg:grid-cols-[1fr_360px_1fr] gap-5 items-start">
+        <div className="flex flex-col lg:grid lg:grid-cols-[1fr_360px_1fr] gap-5 lg:items-start">
           {/* Left cards */}
           <div className="flex flex-col gap-5">
             {leftCards.map((card, i) => (
@@ -123,7 +123,7 @@ export default function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-            className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/40 lg:sticky lg:top-28"
+            className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/40 lg:sticky lg:top-28 order-first lg:order-none"
             style={{ minHeight: "480px" }}
           >
             <img

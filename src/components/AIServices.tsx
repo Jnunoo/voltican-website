@@ -88,8 +88,41 @@ export default function AIServices() {
         </p>
       </div>
 
-      {/* Circular gallery — auto-rotates, no scroll hijacking */}
-      <div className="relative z-10 w-full h-[540px]">
+      {/* ─── MOBILE / TABLET: stacked card grid ─── */}
+      <div className="lg:hidden relative z-10 px-6 pb-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+          {aiServiceItems.map((item) => (
+            <div
+              key={item.common}
+              className="group rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300"
+            >
+              <div className="relative h-40 w-full overflow-hidden">
+                <img
+                  src={item.photo.url}
+                  alt={item.photo.text}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  style={{ objectPosition: item.photo.pos }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-transparent" />
+              </div>
+              <div className="p-4">
+                <p className="text-brand-orange text-[11px] font-semibold tracking-widest uppercase mb-1">
+                  {item.binomial}
+                </p>
+                <h3 className="text-white font-heading font-bold text-base mb-2 leading-snug">
+                  {item.common}
+                </h3>
+                <p className="text-brand-ice/60 text-sm leading-relaxed">
+                  {item.photo.by}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ─── DESKTOP: circular gallery ─── */}
+      <div className="hidden lg:block relative z-10 w-full h-[540px]">
         <CircularGallery
           items={aiServiceItems}
           radius={420}
@@ -98,10 +131,10 @@ export default function AIServices() {
       </div>
 
       {/* Bottom CTA */}
-      <div className="relative z-10 flex justify-center pt-6">
+      <div className="relative z-10 flex justify-center pt-6 px-6">
         <a
           href="#ai-assessment"
-          className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-brand-orange text-white font-semibold text-sm hover:bg-brand-orange/90 transition-colors"
+          className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-brand-orange text-white font-semibold text-sm hover:bg-brand-orange/90 transition-colors w-full sm:w-auto max-w-xs sm:max-w-none"
         >
           Start with a Free AI Assessment
         </a>

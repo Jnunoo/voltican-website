@@ -55,7 +55,7 @@ export default function HowWeWork() {
         </div>
 
         {/* Steps grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-0">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4 lg:gap-0">
           {steps.map((step, i) => (
             <div
               key={step.number}
@@ -66,7 +66,7 @@ export default function HowWeWork() {
                 <div className="hidden lg:block absolute top-[26px] left-[calc(50%+28px)] right-0 h-px bg-white/10 z-0" />
               )}
 
-              <div className="relative z-10 pr-8">
+              <div className="relative z-10 pr-0 lg:pr-8">
                 {/* Number + icon row */}
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-12 h-12 rounded-full border border-white/15 bg-white/5 flex items-center justify-center shrink-0 group-hover:border-brand-orange/40 group-hover:bg-brand-orange/10 transition-all duration-300">

@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 };
 
 const categoryColors: Record<string, string> = {
-  "AI Strategy":           "#001f3d",
-  "Data Strategy":         "#002d5a",
-  "Enterprise Technology": "#0a1e3c",
-  "AI Tools":              "#0d2244",
+  "AI Strategy":           "#003e6a",
+  "Data Strategy":         "#0a4a7a",
+  "Enterprise Technology": "#003e6a",
+  "AI Tools":              "#0a3d5c",
 };
 
 export default function BlogPage() {
@@ -32,7 +32,7 @@ export default function BlogPage() {
               Insights
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-[#001f3d] tracking-tight leading-tight max-w-3xl mb-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-[#003e6a] tracking-tight leading-tight max-w-3xl mb-4">
             Ideas that move<br className="hidden md:block" /> the industry
           </h1>
           <p className="text-slate-500 text-lg leading-relaxed max-w-2xl">
@@ -50,7 +50,7 @@ export default function BlogPage() {
           <Link
             href={`/blog/${featured.slug}`}
             className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-400 hover:-translate-y-1 flex flex-col md:flex-row mb-8"
-            style={{ background: categoryColors[featured.category] ?? "#001f3d" }}
+            style={{ background: categoryColors[featured.category] ?? "#003e6a" }}
           >
             {/* Left: AI image */}
             <div className="md:w-72 lg:w-80 shrink-0 relative overflow-hidden min-h-[220px]">
@@ -62,7 +62,7 @@ export default function BlogPage() {
                 sizes="(max-width: 768px) 100vw, 320px"
               />
               {/* Dark gradient right-edge blend */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-black/5 to-[#001f3d]" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-black/5 to-[#003e6a]" />
               {/* Category badge */}
               <div className="absolute top-4 left-4">
                 <span className="bg-white/15 backdrop-blur-sm border border-white/25 text-white text-[11px] font-semibold px-3 py-1.5 rounded-full uppercase tracking-widest">
@@ -72,7 +72,7 @@ export default function BlogPage() {
             </div>
 
             {/* Right: content */}
-            <div className="flex-1 p-8 flex flex-col justify-between" style={{ background: categoryColors[featured.category] ?? "#001f3d" }}>
+            <div className="flex-1 p-8 flex flex-col justify-between" style={{ background: categoryColors[featured.category] ?? "#003e6a" }}>
               <div>
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-white/40 text-xs">{featured.date}</span>

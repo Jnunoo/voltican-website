@@ -31,14 +31,14 @@ export default function Hero() {
           aria-hidden="true"
         />
         {/* Vignette: fade edges */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#020d1e]/70 via-transparent to-[#020d1e]/50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#020d1e]/50 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#001f3d]/70 via-transparent to-[#001f3d]/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#001f3d]/50 via-transparent to-transparent" />
       </div>
 
       {/* Gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent via-40% to-black/50 pointer-events-none z-10" />
       {/* Bottom fade into next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-[35%] bg-gradient-to-t from-[#002d4e] via-[#002d4e]/80 to-transparent pointer-events-none z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-[35%] bg-gradient-to-t from-[#003e6a] via-[#003e6a]/80 to-transparent pointer-events-none z-10" />
 
       {/* ── MAIN CONTENT ── */}
       <div className="relative z-20 flex flex-col justify-between h-full w-full">
@@ -89,11 +89,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.95, duration: 0.7 }}
-            className="flex flex-row gap-4 items-center"
+            className="flex flex-col sm:flex-row gap-4 items-start sm:items-center"
           >
             <Button
               asChild
-              className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold px-7 py-5 rounded-full text-sm shadow-lg shadow-brand-orange/25 transition-all duration-300 hover:-translate-y-0.5"
+              className="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold px-7 py-5 rounded-full text-sm shadow-lg shadow-brand-orange/25 transition-all duration-300 hover:-translate-y-0.5"
             >
               <a href="#ai-assessment">Get started today</a>
             </Button>
@@ -113,7 +113,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.3, duration: 0.8 }}
-          className="container mx-auto px-6 md:px-12 lg:px-16 pb-10 flex flex-col sm:flex-row items-end justify-between gap-6"
+          className="container mx-auto px-6 md:px-12 lg:px-16 pb-10 flex flex-col sm:flex-row items-end justify-between gap-6 sm:gap-4"
         >
           {/* Checkmark value props */}
           <div className="flex flex-col gap-2.5">
@@ -128,7 +128,7 @@ export default function Hero() {
           {/* Featured article card */}
           <Link
             href="/case-studies/genai-erp-transformation"
-            className="group flex items-center gap-3 bg-white/8 hover:bg-white/12 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 transition-all duration-300 max-w-xs cursor-pointer"
+            className="group hidden sm:flex items-center gap-3 bg-white/8 hover:bg-white/12 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 transition-all duration-300 max-w-xs cursor-pointer"
           >
             <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-brand-blue/30 flex items-center justify-center">
               <Image

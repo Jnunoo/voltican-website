@@ -45,6 +45,30 @@ const industries = [
 
 const CARDS_PER_VIEW = 4;
 
+// Shared card render
+function IndustryCard({ industry }: { industry: typeof industries[number] }) {
+  return (
+    <div className="relative overflow-hidden rounded-2xl group h-72 sm:h-80 lg:h-96 cursor-pointer">
+      <img
+        src={industry.imgUrl}
+        alt={industry.name}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col items-start gap-1.5">
+        {industry.tags.map((tag) => (
+          <span
+            key={tag}
+            className="inline-block bg-white/90 backdrop-blur-sm text-brand-navy text-xs font-semibold px-3 py-1 rounded-md leading-none"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Industries() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -77,7 +101,6 @@ export default function Industries() {
     }
   };
 
-  // Build the visible window (current + 1 extra for smooth slide)
   const visibleItems = industries.slice(
     currentIndex,
     currentIndex + CARDS_PER_VIEW + 1
@@ -98,8 +121,8 @@ export default function Industries() {
               </h2>
             </div>
 
-            {/* Navigation arrows */}
-            <div className="flex items-center gap-2 shrink-0 ml-6">
+            {/* Nav arrows — only shown alongside desktop carousel */}
+            <div className="hidden lg:flex items-center gap-2 shrink-0 ml-6">
               <button
                 onClick={() => slide("prev")}
                 disabled={!canPrev || isAnimating}
@@ -119,8 +142,19 @@ export default function Industries() {
             </div>
           </div>
 
-          {/* Cards carousel */}
-          <div className="overflow-hidden rounded-2xl">
+          {/* ─── MOBILE / TABLET: horizontal scroll-snap grid ─── */}
+          <div className="lg:hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {industries.map((industry) => (
+                <div key={industry.name}>
+                  <IndustryCard industry={industry} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ─── DESKTOP: animated JS carousel ─── */}
+          <div className="hidden lg:block overflow-hidden rounded-2xl">
             <div
               ref={trackRef}
               className="flex"
@@ -132,29 +166,7 @@ export default function Industries() {
                   className="shrink-0 px-1.5 first:pl-0 last:pr-0"
                   style={{ width: `${100 / CARDS_PER_VIEW}%` }}
                 >
-                  <div className="relative overflow-hidden rounded-2xl group h-80 lg:h-96 cursor-pointer">
-                    {/* Photo */}
-                    <img
-                      src={industry.imgUrl}
-                      alt={industry.name}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-
-                    {/* Subtle gradient overlay so tags are readable */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-
-                    {/* Tag pills — bottom left */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col items-start gap-1.5">
-                      {industry.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="inline-block bg-white/90 backdrop-blur-sm text-brand-navy text-xs font-semibold px-3 py-1 rounded-md leading-none"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  <IndustryCard industry={industry} />
                 </div>
               ))}
             </div>

@@ -96,7 +96,7 @@ export default function SocialProof() {
 
             {/* Cards stack */}
             <div className="lg:w-1/2 flex justify-center overflow-hidden">
-              <div className="relative h-[420px] w-[340px]">
+              <div className="relative h-[420px] w-full max-w-[340px]">
                 {testimonials.map((testimonial, index) => (
                   <TestimonialCard
                     key={testimonial.id}

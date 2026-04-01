@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 const navLinks = [
   { label: "About", href: "/#about" },
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "AI Services", href: "/#ai-services" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Insights", href: "/blog" },
@@ -35,7 +35,7 @@ export default function Navbar() {
 
   // Dark navy — same style whether transparent (home top) or solid (scrolled / sub-pages)
   const solidStyle =
-    "bg-[#001630]/95 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/20";
+    "bg-[#003e6a]/97 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/20";
   const transparentStyle = "bg-transparent border-b border-transparent";
 
   return (
@@ -111,7 +111,7 @@ export default function Navbar() {
 
       {/* Mobile menu — dark to match brand */}
       {mobileOpen && (
-        <div className="lg:hidden bg-[#001630]/97 backdrop-blur-md border-t border-white/10">
+        <div className="lg:hidden bg-[#003e6a]/97 backdrop-blur-md border-t border-white/10">
           <nav className="flex flex-col p-6 gap-4">
             {navLinks.map((link) => (
               <Link
