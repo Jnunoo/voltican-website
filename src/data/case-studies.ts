@@ -11,6 +11,7 @@ export interface CaseStudy {
   readTime: string;
   date: string;
   heroColor: string;
+  image: string;
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -32,6 +33,7 @@ export const caseStudies: CaseStudy[] = [
     readTime: "6 min read",
     date: "March 2026",
     heroColor: "#0a2240",
+    image: "/cs-energy.png",
   },
   {
     slug: "agentic-ai-supply-chain",
@@ -51,6 +53,7 @@ export const caseStudies: CaseStudy[] = [
     readTime: "7 min read",
     date: "February 2026",
     heroColor: "#001a3a",
+    image: "/cs-supply-chain.png",
   },
   {
     slug: "cloud-data-platform-healthcare",
@@ -70,6 +73,7 @@ export const caseStudies: CaseStudy[] = [
     readTime: "8 min read",
     date: "January 2026",
     heroColor: "#0a1f3a",
+    image: "/cs-healthcare.png",
   },
   {
     slug: "ai-readiness-manufacturing",
@@ -89,5 +93,6 @@ export const caseStudies: CaseStudy[] = [
     readTime: "5 min read",
     date: "December 2025",
     heroColor: "#0d1f35",
+    image: "/cs-manufacturing.png",
   },
 ];

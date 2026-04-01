@@ -8,6 +8,7 @@ export interface BlogPost {
   readTime: string;
   date: string;
   tags: string[];
+  image: string;
   featured?: boolean;
 }
 
@@ -15,6 +16,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "agentic-ai-enterprise-2026",
     category: "AI Strategy",
+    image: "/images/blog/agentic-ai-enterprise.png",
     title: "Agentic AI Is Here. Is Your Enterprise Ready?",
     excerpt: "Autonomous AI agents that plan, act, and course-correct without human input are moving from research into production. Here's what enterprise leaders need to know — and do — now.",
     featured: true,
@@ -65,6 +67,7 @@ The organizations that win the next phase of AI adoption won't be those who depl
   {
     slug: "data-governance-ai-era",
     category: "Data Strategy",
+    image: "/images/blog/data-governance.png",
     title: "Why Data Governance Is the New Competitive Moat",
     excerpt: "Every organization wants AI. The ones who will actually win with it are those who treat data governance not as compliance overhead, but as strategic infrastructure.",
     author: { name: "Priya Nair", title: "Director, Data Practice" },
@@ -104,6 +107,7 @@ Governance isn't boring plumbing. It's the foundation everything else is built o
   {
     slug: "erp-ai-integration-guide",
     category: "Enterprise Technology",
+    image: "/images/blog/erp-ai-integration.png",
     title: "The Practical Guide to Integrating AI with Your ERP — Without Breaking It",
     excerpt: "AI integration with SAP, Dynamics 365, and Oracle doesn't have to mean multi-year transformation programs. Here's how to embed intelligence into your existing ERP without destabilizing operations.",
     author: { name: "James Okafor", title: "Principal Architect, ERP Practice" },
@@ -151,6 +155,7 @@ We recommend a three-phase approach: **Foundation** (data readiness and API mapp
   {
     slug: "microsoft-copilot-enterprise-reality",
     category: "AI Tools",
+    image: "/images/blog/microsoft-copilot.png",
     title: "Microsoft Copilot in the Enterprise: What's Working, What Isn't, and What Comes Next",
     excerpt: "Six months of enterprise Copilot deployments across our client base reveal patterns — both promising and cautionary — that every organization considering the rollout should understand.",
     author: { name: "Sarah Chen", title: "Senior Consultant, AI Practice" },

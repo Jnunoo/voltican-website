@@ -57,7 +57,7 @@ const cardVariants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.12, duration: 0.55, ease: [0.4, 0, 0.2, 1] },
+    transition: { delay: i * 0.12, duration: 0.55, ease: "easeInOut" as const },
   }),
 };
 
@@ -65,7 +65,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-20 lg:py-28"
+      className="min-h-screen py-20 lg:py-28 flex flex-col justify-center"
       style={{ background: "linear-gradient(135deg, #003e6a 0%, #00284a 60%, #001d36 100%)" }}
     >
       <div className="mx-auto max-w-7xl px-6">
@@ -77,7 +77,7 @@ export default function About() {
           transition={{ duration: 0.7 }}
           className="text-center mb-14"
         >
-          <p className="text-brand-orange font-semibold text-sm tracking-widest uppercase mb-3">
+          <p className="text-white/40 font-semibold text-xs tracking-[0.2em] uppercase mb-3">
             Who We Are
           </p>
           <h2 className="text-3xl lg:text-4xl font-heading font-bold text-white leading-tight">

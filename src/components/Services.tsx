@@ -6,12 +6,12 @@ import { services } from '@/data/services';
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 lg:py-28 bg-white">
+    <section id="services" className="min-h-screen py-20 lg:py-28 bg-white flex flex-col justify-center">
       <div className="mx-auto max-w-7xl px-6">
         <ScrollReveal>
           {/* Section header */}
           <div className="max-w-2xl mb-14">
-            <p className="text-brand-blue font-semibold text-xs tracking-[0.18em] uppercase mb-3">
+            <p className="text-slate-400 font-semibold text-xs tracking-[0.2em] uppercase mb-3">
               Our Services
             </p>
             <h2 className="text-3xl lg:text-4xl font-heading font-bold text-brand-navy leading-tight">
@@ -41,7 +41,7 @@ export default function Services() {
                 </div>
 
                 {/* Tag */}
-                <p className="text-[11px] font-semibold text-brand-blue tracking-widest uppercase mb-2">
+                <p className="text-[11px] font-semibold text-slate-400 tracking-widest uppercase mb-2">
                   {service.tag}
                 </p>
 

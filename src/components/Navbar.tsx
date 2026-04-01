@@ -3,91 +3,97 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "AI Services", href: "#ai-services" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#services" },
+  { label: "AI Services", href: "/#ai-services" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Insights", href: "/blog" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
+    // On sub-pages, always show solid navbar immediately
+    if (!isHome) {
+      setScrolled(true);
+      return;
+    }
+    // On home, transition on scroll
     const handleScroll = () => setScrolled(window.scrollY > 60);
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname, isHome]);
+
+  // Dark navy — same style whether transparent (home top) or solid (scrolled / sub-pages)
+  const solidStyle =
+    "bg-[#001630]/95 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/20";
+  const transparentStyle = "bg-transparent border-b border-transparent";
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm"
-          : "bg-transparent border-b border-transparent"
+        scrolled ? solidStyle : transparentStyle
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 flex items-center justify-between h-16">
-        {/* Logo — white on hero, colored when scrolled */}
+        {/* Logo — always white on dark background */}
         <Link href="/" className="flex items-center">
           <Image
             src="/logo-white.png"
             alt="Voltican"
             width={160}
             height={48}
-            className="h-10 w-auto object-contain transition-all duration-300"
-            style={
-              scrolled
-                ? {
-                    filter:
-                      "brightness(0) saturate(100%) invert(29%) sepia(89%) saturate(1200%) hue-rotate(199deg) brightness(90%) contrast(105%)",
-                  }
-                : { filter: "none" }
-            }
+            className="h-10 w-auto object-contain"
             priority
           />
         </Link>
 
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium transition-colors duration-300 ${
-                scrolled
-                  ? "text-foreground/70 hover:text-brand-blue"
-                  : "text-white/80 hover:text-white"
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive =
+              link.href === pathname ||
+              (link.href.startsWith("/") &&
+                !link.href.includes("#") &&
+                pathname.startsWith(link.href));
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium transition-colors duration-300 ${
+                  isActive
+                    ? "text-white font-semibold"
+                    : "text-white/70 hover:text-white"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* CTA */}
         <div className="hidden lg:flex items-center gap-4">
-          <a
-            href="#ai-assessment"
-            className={`inline-flex items-center justify-center h-10 px-5 rounded-full text-sm font-semibold transition-all duration-300 ${
-              scrolled
-                ? "bg-brand-orange text-white hover:bg-brand-orange/90"
-                : "bg-white/15 backdrop-blur-sm border border-white/30 text-white hover:bg-white/25"
-            }`}
+          <Link
+            href="/#ai-assessment"
+            className="inline-flex items-center justify-center h-10 px-5 rounded-full text-sm font-semibold transition-all duration-300 bg-brand-orange hover:bg-brand-orange/90 text-white shadow-md shadow-brand-orange/25 hover:-translate-y-0.5"
           >
             Free AI Assessment
-          </a>
+          </Link>
         </div>
 
         {/* Mobile toggle */}
         <button
-          className={`lg:hidden p-2 transition-colors ${
-            scrolled ? "text-foreground" : "text-white"
-          }`}
+          className="lg:hidden p-2 transition-colors text-white"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -103,27 +109,27 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — dark to match brand */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white/95 backdrop-blur-md border-t border-slate-200">
+        <div className="lg:hidden bg-[#001630]/97 backdrop-blur-md border-t border-white/10">
           <nav className="flex flex-col p-6 gap-4">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-base font-medium text-foreground/70 hover:text-brand-blue"
+                className="text-base font-medium text-white/70 hover:text-white transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#ai-assessment"
+            <Link
+              href="/#ai-assessment"
               onClick={() => setMobileOpen(false)}
-              className="inline-flex items-center justify-center h-11 px-6 rounded-full bg-brand-orange text-white font-semibold mt-2"
+              className="inline-flex items-center justify-center h-11 px-6 rounded-full bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold mt-2 transition-all"
             >
               Free AI Assessment
-            </a>
+            </Link>
           </nav>
         </div>
       )}

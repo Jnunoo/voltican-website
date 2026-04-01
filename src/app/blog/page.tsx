@@ -1,5 +1,6 @@
 import { blogPosts } from "@/data/blog-posts";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Metadata } from "next";
 
@@ -10,148 +11,191 @@ export const metadata: Metadata = {
 };
 
 const categoryColors: Record<string, string> = {
-  "AI Strategy": "bg-purple-100 text-purple-700",
-  "Data Strategy": "bg-blue-100 text-blue-700",
-  "Enterprise Technology": "bg-sky-100 text-sky-700",
-  "AI Tools": "bg-amber-100 text-amber-600",
+  "AI Strategy":           "#001f3d",
+  "Data Strategy":         "#002d5a",
+  "Enterprise Technology": "#0a1e3c",
+  "AI Tools":              "#0d2244",
 };
 
 export default function BlogPage() {
   const [featured, ...rest] = blogPosts;
 
   return (
-    <main className="min-h-screen bg-[#f8f9fc]">
-      {/* Page header */}
-      <section className="bg-gradient-to-b from-[#001f3d] to-[#003163] pt-36 pb-16">
+    <main className="min-h-screen bg-white">
+
+      {/* ── Page header — white bg, navy text (matches Case Studies) ── */}
+      <section className="pt-28 pb-14 bg-white border-b border-slate-100">
         <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl">
           <div className="flex items-center gap-3 mb-5">
-            <div className="h-px w-8 bg-brand-orange" />
-            <span className="text-brand-orange text-xs font-semibold tracking-widest uppercase">Insights</span>
+            <div className="h-px w-8 bg-slate-300" />
+            <span className="text-slate-400 text-xs font-semibold tracking-[0.2em] uppercase">
+              Insights
+            </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-white tracking-tight leading-tight max-w-2xl mb-4">
-            Ideas that move the industry
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-[#001f3d] tracking-tight leading-tight max-w-3xl mb-4">
+            Ideas that move<br className="hidden md:block" /> the industry
           </h1>
-          <p className="text-white/55 text-lg max-w-xl leading-relaxed">
+          <p className="text-slate-500 text-lg leading-relaxed max-w-2xl">
             Expert perspectives on AI strategy, enterprise transformation, and the technology decisions
             that define competitive advantage.
           </p>
-
-          {/* Category filters (static, decorative) */}
-          <div className="flex flex-wrap gap-2 mt-8">
-            {["All", "AI Strategy", "Data Strategy", "Enterprise Technology", "AI Tools"].map((cat) => (
-              <span
-                key={cat}
-                className={`text-xs px-3.5 py-1.5 rounded-full font-medium cursor-pointer transition-colors ${
-                  cat === "All"
-                    ? "bg-brand-orange text-white"
-                    : "bg-white/10 text-white/60 hover:bg-white/20 hover:text-white"
-                }`}
-              >
-                {cat}
-              </span>
-            ))}
-          </div>
         </div>
       </section>
 
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl py-14">
-        {/* Featured post */}
-        <div className="mb-12">
-          <p className="text-xs text-slate-400 uppercase tracking-widest font-medium mb-5">Featured</p>
+      {/* ── Card grid ── */}
+      <section className="bg-white py-14">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl">
+
+          {/* Featured post — full-width horizontal card */}
           <Link
             href={`/blog/${featured.slug}`}
-            className="group grid grid-cols-1 lg:grid-cols-5 gap-0 bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+            className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-400 hover:-translate-y-1 flex flex-col md:flex-row mb-8"
+            style={{ background: categoryColors[featured.category] ?? "#001f3d" }}
           >
-            {/* Image side */}
-            <div className="lg:col-span-2 bg-gradient-to-br from-[#001f3d] to-[#003475] min-h-[220px] flex items-center justify-center p-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-brand-orange/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-brand-orange text-3xl font-bold">AI</span>
-                </div>
-                <p className="text-white/40 text-xs uppercase tracking-widest">Voltican Insights</p>
+            {/* Left: AI image */}
+            <div className="md:w-72 lg:w-80 shrink-0 relative overflow-hidden min-h-[220px]">
+              <Image
+                src={featured.image}
+                alt={featured.category}
+                fill
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                sizes="(max-width: 768px) 100vw, 320px"
+              />
+              {/* Dark gradient right-edge blend */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-black/5 to-[#001f3d]" />
+              {/* Category badge */}
+              <div className="absolute top-4 left-4">
+                <span className="bg-white/15 backdrop-blur-sm border border-white/25 text-white text-[11px] font-semibold px-3 py-1.5 rounded-full uppercase tracking-widest">
+                  {featured.category}
+                </span>
               </div>
             </div>
-            {/* Content */}
-            <div className="lg:col-span-3 p-8 flex flex-col justify-between">
+
+            {/* Right: content */}
+            <div className="flex-1 p-8 flex flex-col justify-between" style={{ background: categoryColors[featured.category] ?? "#001f3d" }}>
               <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${categoryColors[featured.category] ?? "bg-slate-100 text-slate-600"}`}>
-                    {featured.category}
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-white/40 text-xs">{featured.date}</span>
+                  <span className="text-white/25 text-xs">·</span>
+                  <span className="text-white/40 text-xs">{featured.readTime}</span>
+                  <span className="ml-auto bg-white/10 border border-white/15 text-white/60 text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-widest">
+                    Featured
                   </span>
-                  <span className="text-slate-400 text-xs">{featured.date} · {featured.readTime}</span>
                 </div>
-                <h2 className="text-2xl font-bold text-slate-800 leading-snug mb-3 group-hover:text-brand-blue transition-colors">
+                <h2 className="text-xl md:text-2xl font-bold text-white leading-snug mb-3 group-hover:text-white/90 transition-colors">
                   {featured.title}
                 </h2>
-                <p className="text-slate-500 text-sm leading-relaxed mb-5">
+                <p className="text-white/55 text-sm leading-relaxed mb-5 line-clamp-2">
                   {featured.excerpt}
                 </p>
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {featured.tags.slice(0, 3).map((tag) => (
+                    <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-white/10 text-white/55 border border-white/10">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
+
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-slate-700 text-sm font-semibold">{featured.author.name}</p>
-                  <p className="text-slate-400 text-xs">{featured.author.title}</p>
+                  <p className="text-white/70 text-sm font-semibold">{featured.author.name}</p>
+                  <p className="text-white/35 text-xs">{featured.author.title}</p>
                 </div>
-                <div className="flex items-center gap-2 text-brand-blue text-sm font-semibold group-hover:gap-3 transition-all">
-                  Read article <ArrowRight className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-white/50 group-hover:text-white text-sm font-medium group-hover:gap-3 transition-all duration-200">
+                  Read article <ArrowRight className="w-3.5 h-3.5" />
                 </div>
               </div>
             </div>
           </Link>
-        </div>
 
-        {/* Rest of posts */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {rest.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col"
-            >
-              {/* Color stripe */}
-              <div className="h-1 bg-gradient-to-r from-brand-orange to-brand-blue" />
-              <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${categoryColors[post.category] ?? "bg-slate-100 text-slate-600"}`}>
-                    {post.category}
-                  </span>
-                </div>
-                <h2 className="text-base font-bold text-slate-800 leading-snug mb-3 group-hover:text-brand-blue transition-colors flex-1">
-                  {post.title}
-                </h2>
-                <p className="text-slate-500 text-sm leading-relaxed mb-5 line-clamp-3">
-                  {post.excerpt}
-                </p>
-                <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-50">
-                  <div>
-                    <p className="text-slate-600 text-xs font-semibold">{post.author.name}</p>
-                    <p className="text-slate-400 text-xs">{post.date} · {post.readTime}</p>
+          {/* Remaining posts — 2-column grid (matches Case Studies) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {rest.map((post) => {
+              const bg = categoryColors[post.category] ?? "#001f3d";
+              return (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-400 hover:-translate-y-1 flex flex-col"
+                  style={{ background: bg }}
+                >
+                  {/* AI image top panel */}
+                  <div className="relative h-48 overflow-hidden">
+                    <Image
+                      src={post.image}
+                      alt={post.category}
+                      fill
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    {/* Gradient overlay — blends into the card body colour */}
+                    <div
+                      className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-[var(--bg)]"
+                      style={{ '--bg': bg } as React.CSSProperties}
+                    />
+                    {/* Category badge top-left */}
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-white/15 backdrop-blur-sm border border-white/25 text-white text-[11px] font-semibold px-3 py-1.5 rounded-full uppercase tracking-widest">
+                        {post.category}
+                      </span>
+                    </div>
+                    {/* Read time top-right */}
+                    <div className="absolute top-4 right-4">
+                      <span className="text-white/60 text-xs">{post.readTime}</span>
+                    </div>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-brand-blue transition-colors" />
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
 
-        {/* Newsletter CTA */}
-        <div className="mt-14 bg-white border border-slate-100 rounded-2xl p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
-          <div>
-            <h3 className="text-xl font-bold text-slate-800 mb-1">Get insights in your inbox</h3>
-            <p className="text-slate-500 text-sm">Monthly perspectives on AI strategy and enterprise transformation.</p>
+                  {/* Card body */}
+                  <div className="flex flex-col flex-1 p-7" style={{ background: bg }}>
+                    <p className="text-white/40 text-xs mb-1">{post.author.name} · {post.date}</p>
+                    <h2 className="text-base font-bold text-white leading-snug mb-3 group-hover:text-white/90 transition-colors flex-1">
+                      {post.title}
+                    </h2>
+                    <p className="text-white/55 text-sm leading-relaxed mb-5 line-clamp-2">
+                      {post.excerpt}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-5">
+                      {post.tags.slice(0, 3).map((tag) => (
+                        <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-white/10 text-white/55 border border-white/10">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* CTA */}
+                    <div className="flex items-center gap-2 text-white/50 group-hover:text-white text-sm font-medium group-hover:gap-3 transition-all duration-200 mt-auto">
+                      Read article <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
-          <div className="flex gap-3">
-            <input
-              type="email"
-              placeholder="your@company.com"
-              className="border border-slate-200 rounded-full px-5 py-2.5 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-brand-blue/30 min-w-[220px]"
-            />
-            <button className="bg-brand-blue hover:bg-brand-blue/90 text-white text-sm font-semibold px-6 py-2.5 rounded-full whitespace-nowrap transition-colors">
-              Subscribe
-            </button>
+
+          {/* ── Newsletter CTA ── */}
+          <div className="mt-16 bg-[#001f3d] rounded-2xl p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+              <h3 className="text-xl font-bold text-white mb-1">Get insights in your inbox</h3>
+              <p className="text-white/55 text-sm">Monthly perspectives on AI strategy and enterprise transformation.</p>
+            </div>
+            <div className="flex gap-3 shrink-0">
+              <input
+                type="email"
+                placeholder="your@company.com"
+                className="bg-white/10 border border-white/20 rounded-full px-5 py-2.5 text-sm text-white placeholder:text-white/35 outline-none focus:ring-2 focus:ring-white/20 min-w-[220px]"
+              />
+              <button className="bg-brand-orange hover:bg-brand-orange/90 text-white text-sm font-semibold px-6 py-2.5 rounded-full whitespace-nowrap transition-colors shadow-md shadow-brand-orange/20">
+                Subscribe
+              </button>
+            </div>
           </div>
+
         </div>
-      </div>
+      </section>
     </main>
   );
 }

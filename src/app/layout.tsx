@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Raleway, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import PageTransition from "@/components/PageTransition";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -33,7 +35,16 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${raleway.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        {/* Global Navbar — visible on every route */}
+        <Navbar />
+        {/*
+          PageTransition forces React to remount page content on every route
+          change (including browser Back), which resets Framer Motion's
+          whileInView state so animations replay correctly.
+        */}
+        <PageTransition>{children}</PageTransition>
+      </body>
     </html>
   );
 }

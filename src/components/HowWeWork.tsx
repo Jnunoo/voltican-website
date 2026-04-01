@@ -39,11 +39,11 @@ const steps = [
 
 export default function HowWeWork() {
   return (
-    <section id="how-we-work" className="py-20 lg:py-28 bg-brand-navy">
+    <section id="how-we-work" className="min-h-screen py-20 lg:py-28 bg-brand-navy flex flex-col justify-center">
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
         <div className="max-w-2xl mb-16">
-          <p className="text-brand-orange font-semibold text-xs tracking-[0.18em] uppercase mb-3">
+          <p className="text-white/35 font-semibold text-xs tracking-[0.2em] uppercase mb-3">
             How We Work
           </p>
           <h2 className="text-3xl lg:text-4xl font-heading font-bold text-white leading-tight">
@@ -78,7 +78,7 @@ export default function HowWeWork() {
                 </div>
 
                 {/* Phase tag */}
-                <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-brand-orange/70 mb-1.5">
+                <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/30 mb-1.5">
                   {step.phase}
                 </p>
 
