@@ -1,95 +1,91 @@
 'use client';
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
-import { SiGooglecloud, SiDatabricks, SiSnowflake, SiSap, SiSalesforce } from "react-icons/si";
-import { FaMicrosoft, FaAws, FaWindows } from "react-icons/fa6";
+import {
+  SiSap,
+  SiSalesforce,
+  SiGooglecloud,
+  SiDatabricks,
+  SiSnowflake,
+} from "react-icons/si";
+import { FaMicrosoft, FaAws } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 
-// Brands where we have a matching vector icon
-const partners: { name: string; Icon: IconType; color: string }[] = [
-  { name: "SAP",           Icon: SiSap,          color: "#0F4E90" },
-  { name: "Microsoft",     Icon: FaMicrosoft,    color: "#737373" },
-  { name: "AWS",           Icon: FaAws,          color: "#FF9900" },
-  { name: "Salesforce",    Icon: SiSalesforce,   color: "#00A1E0" },
-  { name: "Google Cloud",  Icon: SiGooglecloud,  color: "#4285F4" },
-  { name: "Databricks",    Icon: SiDatabricks,   color: "#FF3621" },
-  { name: "Snowflake",     Icon: SiSnowflake,    color: "#29B5E8" },
+const MONO_COLOR = "#0a67c7"; // brand-blue — matches the About section icon color
+const HOVER_COLOR = "#003e6a"; // brand navy on hover
+
+type IconPartner = { type: "icon"; name: string; Icon: IconType };
+type TextPartner = { type: "text"; name: string; display: string };
+type Partner = IconPartner | TextPartner;
+
+const partners: Partner[] = [
+  { type: "icon", name: "SAP",          Icon: SiSap          },
+  { type: "text", name: "Oracle",       display: "ORACLE"    },
+  { type: "icon", name: "Microsoft",    Icon: FaMicrosoft    },
+  { type: "text", name: "IBM",          display: "IBM"       },
+  { type: "icon", name: "AWS",          Icon: FaAws          },
+  { type: "text", name: "Azure",        display: "AZURE"     },
+  { type: "icon", name: "Salesforce",   Icon: SiSalesforce   },
+  { type: "icon", name: "Google Cloud", Icon: SiGooglecloud  },
+  { type: "icon", name: "Snowflake",    Icon: SiSnowflake    },
+  { type: "icon", name: "Databricks",   Icon: SiDatabricks   },
 ];
 
-// Brands using styled-text badges where no icon is available
-const textPartners: { name: string; abbr: string; color: string; bg: string }[] = [
-  { name: "Oracle",        abbr: "ORA",  color: "#fff", bg: "#F80000" },
-  { name: "IBM",           abbr: "IBM",  color: "#fff", bg: "#1F70C1" },
-  { name: "Azure",         abbr: "Az",   color: "#fff", bg: "#0078D4" },
-  { name: "Tableau",       abbr: "TAB",  color: "#fff", bg: "#E97627" },
-  { name: "Power BI",      abbr: "PBI",  color: "#fff", bg: "#F2C811" },
-];
+function PartnerMark({ partner }: { partner: Partner }) {
+  const base =
+    "flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300 group";
 
-// Merge and interleave for a balanced slider
-const allPartners = [
-  partners[0],  // SAP
-  textPartners[0], // Oracle
-  partners[1],  // Microsoft
-  textPartners[1], // IBM
-  partners[2],  // AWS
-  textPartners[2], // Azure
-  partners[3],  // Salesforce
-  textPartners[3], // Tableau
-  partners[4],  // Google Cloud
-  textPartners[4], // Power BI
-  partners[5],  // Databricks
-  partners[6],  // Snowflake
-];
+  if (partner.type === "icon") {
+    return (
+      <div className={base} title={partner.name}>
+        <partner.Icon
+          size={40}
+          style={{ color: MONO_COLOR }}
+          className="group-hover:text-[#003e6a] transition-colors duration-300"
+        />
+      </div>
+    );
+  }
 
-type AnyPartner = 
-  | { name: string; Icon: IconType; color: string; abbr?: undefined }
-  | { name: string; abbr: string; color: string; bg: string; Icon?: undefined };
+  return (
+    <div className={base} title={partner.name}>
+      <span
+        className="font-black tracking-widest uppercase leading-none select-none group-hover:text-[#003e6a] transition-colors duration-300"
+        style={{
+          color: MONO_COLOR,
+          fontSize: partner.display.length <= 3 ? "22px" : "17px",
+          fontFamily: "var(--font-heading, 'Inter', sans-serif)",
+          letterSpacing: "0.12em",
+        }}
+      >
+        {partner.display}
+      </span>
+    </div>
+  );
+}
 
 export default function TechPartners() {
   return (
-    <section className="py-14 overflow-hidden bg-white border-y border-surface-muted/40">
-      <div className="mx-auto max-w-7xl px-6 mb-8">
-        <p className="text-center text-xs font-semibold text-text-muted tracking-widest uppercase">
+    <section className="py-14 overflow-hidden bg-white border-y border-slate-100">
+      <div className="mx-auto max-w-7xl px-6 mb-10">
+        <p className="text-center text-[11px] font-semibold text-slate-400 tracking-[0.2em] uppercase">
           Trusted Technology Partners
         </p>
       </div>
 
       <div className="relative">
-        <InfiniteSlider gap={16} speed={55} speedOnHover={20}>
-          {(allPartners as AnyPartner[]).map((partner) => (
-            <div
-              key={partner.name}
-              className="flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-surface-muted/60 bg-surface-light/60 hover:bg-white hover:shadow-md hover:border-brand-blue/20 transition-all duration-300 whitespace-nowrap shrink-0"
-            >
-              {partner.Icon ? (
-                // Vector icon from react-icons
-                <partner.Icon
-                  style={{ color: partner.color }}
-                  className="shrink-0"
-                  size={18}
-                />
-              ) : (
-                // Styled text badge for brands without a vector icon
-                <span
-                  className="flex items-center justify-center rounded text-[9px] font-black tracking-tight shrink-0 px-1 h-5"
-                  style={{ background: (partner as { bg: string }).bg, color: partner.color, minWidth: 28 }}
-                >
-                  {partner.abbr}
-                </span>
-              )}
-              <span className="text-sm font-semibold text-brand-navy/75">
-                {partner.name}
-              </span>
-            </div>
+        <InfiniteSlider gap={100} speed={60} speedOnHover={20}>
+          {partners.map((p) => (
+            <PartnerMark key={p.name} partner={p} />
           ))}
         </InfiniteSlider>
 
-        {/* Edge fades */}
+        {/* Soft edge fades */}
         <div
-          className="pointer-events-none absolute top-0 left-0 h-full w-24 z-10"
+          className="pointer-events-none absolute top-0 left-0 h-full w-32 z-10"
           style={{ background: "linear-gradient(to right, #ffffff, transparent)" }}
         />
         <div
-          className="pointer-events-none absolute top-0 right-0 h-full w-24 z-10"
+          className="pointer-events-none absolute top-0 right-0 h-full w-32 z-10"
           style={{ background: "linear-gradient(to left, #ffffff, transparent)" }}
         />
       </div>

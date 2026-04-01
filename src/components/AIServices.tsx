@@ -1,110 +1,110 @@
-const aiServices = [
+'use client';
+
+import { CircularGallery, type GalleryItem } from '@/components/ui/circular-gallery';
+
+const aiServiceItems: GalleryItem[] = [
   {
-    number: "01",
-    title: "AI Strategy & Consulting",
-    description:
-      "AI readiness assessments, opportunity identification, roadmap design, and executive AI literacy workshops. We help you build the business case and governance framework before investing.",
-    tags: ["AI Readiness", "Roadmaps", "Governance"],
+    common: 'AI Strategy & Consulting',
+    binomial: 'Roadmaps · Governance · Readiness',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=900&auto=format&fit=crop&q=80',
+      text: 'Abstract AI neural network visualization',
+      pos: '50% 40%',
+      by: 'AI readiness assessments, opportunity identification & executive workshops',
+    },
   },
   {
-    number: "02",
-    title: "Generative AI Implementation",
-    description:
-      "Enterprise chatbots, RAG systems using your proprietary data, document intelligence, LLM fine-tuning, and AI-powered content generation integrated into SAP, Salesforce, and Dynamics.",
-    tags: ["LLMs", "RAG", "Enterprise Integration"],
+    common: 'Generative AI Implementation',
+    binomial: 'LLMs · RAG · Enterprise Integration',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1655720031554-a929595ffad7?w=900&auto=format&fit=crop&q=80',
+      text: 'Generative AI interface and chat system',
+      pos: '50% 30%',
+      by: 'Enterprise chatbots, RAG systems & document intelligence on SAP, Salesforce, Dynamics',
+    },
   },
   {
-    number: "03",
-    title: "Intelligent Process Automation",
-    description:
-      "AI-enhanced RPA with cognitive bots that handle unstructured data, intelligent document processing, computer vision for quality inspection, and decision AI for approvals.",
-    tags: ["Cognitive RPA", "Document AI", "Computer Vision"],
+    common: 'Intelligent Process Automation',
+    binomial: 'Cognitive RPA · Document AI · Vision',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=900&auto=format&fit=crop&q=80',
+      text: 'Robotic automation and AI processing',
+      pos: '50% 20%',
+      by: 'AI-enhanced RPA with cognitive bots for unstructured data & quality inspection',
+    },
   },
   {
-    number: "04",
-    title: "AI-Powered Data Analytics",
-    description:
-      "Natural language querying, automated insight generation, AI-powered forecasting, agentic analytics, and embedded AI in Power BI, Tableau, and Qlik.",
-    tags: ["NL Querying", "Forecasting", "Agentic Analytics"],
+    common: 'AI-Powered Data Analytics',
+    binomial: 'NL Querying · Forecasting · Agentic',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&auto=format&fit=crop&q=80',
+      text: 'Data analytics dashboard and visualization',
+      pos: '50% 50%',
+      by: 'Natural language querying, AI forecasting & embedded analytics in Power BI, Tableau, Qlik',
+    },
   },
   {
-    number: "05",
-    title: "AI Governance & Responsible AI",
-    description:
-      "AI risk assessment, model explainability (XAI), bias detection, regulatory compliance (EU AI Act, NIST AI RMF), and AI incident response planning.",
-    tags: ["Ethics", "Compliance", "Risk"],
+    common: 'AI Governance & Responsible AI',
+    binomial: 'Ethics · Compliance · Risk',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=900&auto=format&fit=crop&q=80',
+      text: 'Security and governance framework visualization',
+      pos: '50% 35%',
+      by: 'AI risk assessment, bias detection & EU AI Act / NIST AI RMF compliance',
+    },
   },
   {
-    number: "06",
-    title: "MLOps & AI Infrastructure",
-    description:
-      "ML platform design on Databricks, SageMaker, and Azure ML. Feature stores, vector databases, CI/CD for models, and GPU compute cost optimization.",
-    tags: ["MLOps", "Platforms", "Scaling"],
+    common: 'MLOps & AI Infrastructure',
+    binomial: 'MLOps · Platforms · Scaling',
+    photo: {
+      url: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=900&auto=format&fit=crop&q=80',
+      text: 'Cloud infrastructure and ML platform',
+      pos: '50% 50%',
+      by: 'ML platforms on Databricks, SageMaker & Azure ML — feature stores, vector DBs, GPU optimization',
+    },
   },
 ];
 
-import ScrollReveal from "./ScrollReveal";
-
 export default function AIServices() {
   return (
-    <section id="ai-services" className="py-20 lg:py-28 bg-brand-navy relative overflow-hidden">
-      {/* Decorative */}
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-brand-blue/10" />
-      <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-brand-orange/5" />
+    <section
+      id="ai-services"
+      className="relative overflow-hidden bg-brand-navy py-20 lg:py-24"
+    >
+      {/* Decorative blobs */}
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-brand-blue/10 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-brand-orange/5 blur-3xl pointer-events-none" />
 
-      <div className="relative mx-auto max-w-7xl px-6">
-        <ScrollReveal>
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-brand-orange font-semibold text-sm tracking-widest uppercase mb-3">
-              AI Services
-            </p>
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-white leading-tight">
-              AI capabilities that transform how you work
-            </h2>
-            <p className="mt-4 text-brand-ice/80 text-lg">
-              Six AI practice areas that extend our 15+ years of enterprise
-              expertise into the intelligence era.
-            </p>
-          </div>
+      {/* Section header */}
+      <div className="relative z-10 text-center px-6 mb-8">
+        <p className="text-brand-orange font-semibold text-sm tracking-widest uppercase mb-3">
+          AI Services
+        </p>
+        <h2 className="text-3xl lg:text-4xl font-heading font-bold text-white leading-tight">
+          AI capabilities that transform how you work
+        </h2>
+        <p className="mt-3 text-brand-ice/60 text-base max-w-xl mx-auto">
+          Six AI practice areas extending our 15+ years of enterprise expertise into the intelligence era.
+        </p>
+      </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {aiServices.map((service) => (
-              <div
-                key={service.number}
-                className="reveal-child bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-brand-orange/30 hover:bg-white/10 transition-all group"
-              >
-                <span className="text-brand-orange font-mono text-sm font-bold">
-                  {service.number}
-                </span>
-                <h3 className="mt-3 text-xl font-heading font-bold text-white mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-brand-ice/70 leading-relaxed text-sm mb-5">
-                  {service.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {service.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 rounded-full bg-brand-blue/20 text-brand-ice text-xs font-medium"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+      {/* Circular gallery — auto-rotates, no scroll hijacking */}
+      <div className="relative z-10 w-full h-[540px]">
+        <CircularGallery
+          items={aiServiceItems}
+          radius={420}
+          autoRotateSpeed={0.018}
+        />
+      </div>
 
-          <div className="mt-12 text-center">
-            <a
-              href="#ai-assessment"
-              className="inline-flex items-center justify-center h-13 px-8 rounded-full bg-brand-orange text-white font-semibold text-base hover:bg-brand-orange/90 transition-colors"
-            >
-              Start with a Free AI Assessment
-            </a>
-          </div>
-        </ScrollReveal>
+      {/* Bottom CTA */}
+      <div className="relative z-10 flex justify-center pt-6">
+        <a
+          href="#ai-assessment"
+          className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-brand-orange text-white font-semibold text-sm hover:bg-brand-orange/90 transition-colors"
+        >
+          Start with a Free AI Assessment
+        </a>
       </div>
     </section>
   );

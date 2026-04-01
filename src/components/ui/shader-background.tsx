@@ -77,8 +77,8 @@ const ShaderBackground = () => {
       space.x += random(space.y * warpFrequency + iTime * warpSpeed + 2.0) * warpAmplitude * horizontalFade;
 
       vec4 lines = vec4(0.0);
-      vec4 bgColor1 = vec4(0.02, 0.08, 0.22, 1.0);
-      vec4 bgColor2 = vec4(0.04, 0.14, 0.32, 1.0);
+      vec4 bgColor1 = vec4(0.04, 0.10, 0.26, 1.0);
+      vec4 bgColor2 = vec4(0.06, 0.18, 0.38, 1.0);
 
       for(int l = 0; l < linesPerGroup; l++) {
         float normalizedLineIndex = float(l) / float(linesPerGroup);
@@ -99,7 +99,8 @@ const ShaderBackground = () => {
       }
 
       fragColor = mix(bgColor1, bgColor2, uv.x);
-      fragColor *= verticalFade;
+      // Subtle vertical fade — keep top and bottom visible
+      fragColor *= (0.7 + 0.3 * verticalFade);
       fragColor.a = 1.0;
       fragColor += lines;
 
@@ -173,7 +174,7 @@ const ShaderBackground = () => {
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.height = canvas.parentElement?.offsetHeight ?? window.innerHeight;
       gl.viewport(0, 0, canvas.width, canvas.height);
     };
 

@@ -89,14 +89,14 @@ export default function SocialProof() {
                 testimonials. Each engagement represents a real partnership
                 built on trust and measurable outcomes.
               </p>
-              <p className="text-sm text-brand-blue font-medium">
-                ← Swipe the card to see more
+              <p className="text-sm text-brand-blue font-medium cursor-pointer" onClick={handleShuffle}>
+                ↗ Click to shuffle cards
               </p>
             </div>
 
             {/* Cards stack */}
-            <div className="lg:w-1/2 flex justify-center">
-              <div className="relative -ml-[50px] h-[450px] w-[350px]">
+            <div className="lg:w-1/2 flex justify-center overflow-hidden">
+              <div className="relative h-[420px] w-[340px]">
                 {testimonials.map((testimonial, index) => (
                   <TestimonialCard
                     key={testimonial.id}

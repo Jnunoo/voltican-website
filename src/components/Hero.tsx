@@ -2,162 +2,151 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Zap, Globe } from "lucide-react";
+import { CheckCircle, Zap, Globe, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import ShaderBackground from "@/components/ui/shader-background";
+import Link from "next/link";
 
 const valueProps = [
-  { icon: CheckCircle, label: "Enterprise-grade expertise" },
-  { icon: Zap, label: "AI-first approach" },
-  { icon: Globe, label: "Global delivery" },
+  { icon: CheckCircle, label: "Enterprise-grade AI expertise" },
+  { icon: Zap, label: "AI-first approach to every engagement" },
+  { icon: Globe, label: "Global delivery, local accountability" },
 ];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#050e1e]">
+    <section className="relative h-screen w-full overflow-hidden flex flex-col justify-between">
       {/* WebGL Shader Background */}
       <ShaderBackground />
 
-      {/* Gradient overlay — darkens edges so text pops */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50 pointer-events-none z-10" />
+      {/* Corporate building — subtle, blended into hero background */}
+      <div className="absolute inset-0 z-[5] pointer-events-none">
+        <Image
+          src="/hero-building.png"
+          alt=""
+          fill
+          className="object-cover object-center opacity-[0.2]"
+          style={{ mixBlendMode: "luminosity" }}
+          priority
+          aria-hidden="true"
+        />
+        {/* Vignette: fade edges */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#020d1e]/70 via-transparent to-[#020d1e]/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020d1e]/50 via-transparent to-transparent" />
+      </div>
 
-      {/* Content */}
-      <div className="relative z-20 container mx-auto px-4 md:px-6 pt-28 pb-16 lg:pt-36 lg:pb-24">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          className="max-w-4xl mx-auto text-center"
-        >
-          {/* Tag line */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-brand-orange font-semibold text-sm tracking-widest uppercase mb-6"
+      {/* Gradient overlays */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent via-40% to-black/50 pointer-events-none z-10" />
+      {/* Bottom fade into next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-[35%] bg-gradient-to-t from-[#002d4e] via-[#002d4e]/80 to-transparent pointer-events-none z-10" />
+
+      {/* ── MAIN CONTENT ── */}
+      <div className="relative z-20 flex flex-col justify-between h-full w-full">
+
+        {/* Upper content block — left-aligned, sits in the top ~60% */}
+        <div className="container mx-auto px-6 md:px-12 lg:px-16 pt-32 md:pt-36">
+          {/* Eyebrow */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 0.7 }}
+            className="flex items-center gap-3 mb-6"
           >
-            Global IT Consulting &bull; Est. 2009
-          </motion.p>
+            <div className="h-px w-10 bg-brand-orange/80" />
+            <span className="text-brand-orange font-semibold text-xs tracking-[0.2em] uppercase">
+              Global IT Consulting · Est. 2009
+            </span>
+          </motion.div>
 
-          {/* Animated title */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-heading font-bold mb-6 tracking-tighter leading-[1.1]">
-            {["AI-Powered", "Business"].map((word, wordIndex) => (
-              <span key={wordIndex} className="inline-block mr-3 sm:mr-5 last:mr-0">
-                {word.split("").map((letter, letterIndex) => (
-                  <motion.span
-                    key={`${wordIndex}-${letterIndex}`}
-                    initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{
-                      delay: 0.4 + wordIndex * 0.1 + letterIndex * 0.03,
-                      type: "spring",
-                      stiffness: 150,
-                      damping: 25,
-                    }}
-                    className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-white to-brand-ice"
-                  >
-                    {letter}
-                  </motion.span>
-                ))}
-              </span>
-            ))}
+          {/* Headline — large, left-aligned */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.9, ease: "easeOut" }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.05] max-w-3xl mb-6"
+          >
+            <span className="text-white">AI-Powered Business</span>
             <br />
-            {["Transformation"].map((word, wordIndex) => (
-              <span key={wordIndex} className="inline-block">
-                {word.split("").map((letter, letterIndex) => (
-                  <motion.span
-                    key={`t-${wordIndex}-${letterIndex}`}
-                    initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{
-                      delay: 0.7 + letterIndex * 0.03,
-                      type: "spring",
-                      stiffness: 150,
-                      damping: 25,
-                    }}
-                    className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-brand-orange/80"
-                  >
-                    {letter}
-                  </motion.span>
-                ))}
-              </span>
-            ))}
-          </h1>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-amber-400">
+              Transformation
+            </span>
+          </motion.h1>
 
-          {/* Description */}
+          {/* Subtext */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="text-lg lg:text-xl text-white/70 leading-relaxed max-w-2xl mx-auto mb-10"
+            transition={{ delay: 0.7, duration: 0.8 }}
+            className="text-base md:text-lg text-white/65 leading-relaxed max-w-xl mb-10"
           >
-            We bring 15+ years of enterprise data and technology expertise to the
-            AI era. From strategy through implementation, we integrate AI into
-            your core business processes to deliver measurable results.
+            We bring 15+ years of enterprise technology expertise to the AI era —
+            integrating intelligence into your core business processes to deliver
+            measurable results.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* CTA row */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-14"
+            transition={{ delay: 0.95, duration: 0.7 }}
+            className="flex flex-row gap-4 items-center"
           >
-            <div className="inline-block group relative bg-gradient-to-b from-brand-orange/30 to-brand-orange/10 p-px rounded-2xl backdrop-blur-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <Button
-                asChild
-                variant="ghost"
-                className="rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md bg-brand-orange hover:bg-brand-orange/90 text-white transition-all duration-300 group-hover:-translate-y-0.5 hover:shadow-md"
-              >
-                <a href="#ai-assessment">
-                  <span className="opacity-90 group-hover:opacity-100 transition-opacity">
-                    Get a Free AI Assessment
-                  </span>
-                  <span className="ml-3 opacity-70 group-hover:opacity-100 group-hover:translate-x-1.5 transition-all duration-300">
-                    →
-                  </span>
-                </a>
-              </Button>
-            </div>
+            <Button
+              asChild
+              className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold px-7 py-5 rounded-full text-sm shadow-lg shadow-brand-orange/25 transition-all duration-300 hover:-translate-y-0.5"
+            >
+              <a href="#ai-assessment">Get started today</a>
+            </Button>
 
-            <div className="inline-block group relative bg-gradient-to-b from-white/10 to-white/5 p-px rounded-2xl backdrop-blur-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <Button
-                asChild
-                variant="ghost"
-                className="rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md bg-white/10 hover:bg-white/20 text-white transition-all duration-300 group-hover:-translate-y-0.5 border border-white/20 hover:shadow-md"
-              >
-                <a href="#services">
-                  <span className="opacity-90 group-hover:opacity-100 transition-opacity">
-                    View Our Services
-                  </span>
-                </a>
-              </Button>
-            </div>
+            <a
+              href="#services"
+              className="text-white/65 hover:text-white text-sm font-medium flex items-center gap-2 transition-colors duration-200"
+            >
+              View our services
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </motion.div>
+        </div>
 
-          {/* Value props */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.8, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-8 justify-center"
-          >
-            {valueProps.map((prop, index) => (
-              <motion.div
-                key={prop.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 2 + index * 0.15, duration: 0.5 }}
-                className="flex items-center gap-3"
-              >
-                <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 flex items-center justify-center">
-                  <prop.icon className="w-5 h-5 text-brand-ice" />
-                </div>
-                <span className="text-white/60 text-sm font-medium">
-                  {prop.label}
-                </span>
-              </motion.div>
+        {/* Lower bar — value props left, featured article right */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.3, duration: 0.8 }}
+          className="container mx-auto px-6 md:px-12 lg:px-16 pb-10 flex flex-col sm:flex-row items-end justify-between gap-6"
+        >
+          {/* Checkmark value props */}
+          <div className="flex flex-col gap-2.5">
+            {valueProps.map((prop) => (
+              <div key={prop.label} className="flex items-center gap-2.5">
+                <prop.icon className="w-4 h-4 text-brand-orange/80 shrink-0" />
+                <span className="text-white/60 text-sm">{prop.label}</span>
+              </div>
             ))}
-          </motion.div>
+          </div>
+
+          {/* Featured article card */}
+          <Link
+            href="/case-studies/genai-erp-transformation"
+            className="group flex items-center gap-3 bg-white/8 hover:bg-white/12 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 transition-all duration-300 max-w-xs cursor-pointer"
+          >
+            <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-brand-blue/30 flex items-center justify-center">
+              <Image
+                src="/hero-building.png"
+                alt=""
+                width={56}
+                height={56}
+                className="object-cover w-full h-full opacity-70"
+              />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-white/40 text-[11px] uppercase tracking-widest mb-0.5 font-medium">Featured case study</p>
+              <p className="text-white/85 text-sm font-medium leading-snug line-clamp-2 group-hover:text-white transition-colors">
+                Embedding GenAI into a Legacy ERP to Cut Processing Time by 71%
+              </p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-white/40 group-hover:text-brand-orange shrink-0 transition-colors" />
+          </Link>
         </motion.div>
       </div>
     </section>

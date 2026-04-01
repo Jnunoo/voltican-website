@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import AIServices from "@/components/AIServices";
-import CapabilitiesShowcase from "@/components/CapabilitiesShowcase";
+
 import HowWeWork from "@/components/HowWeWork";
 import Industries from "@/components/Industries";
 import TechPartners from "@/components/TechPartners";
@@ -20,7 +20,7 @@ export default function Home() {
         <About />
         <TechPartners />
         <Services />
-        <CapabilitiesShowcase />
+
         <AIServices />
         <HowWeWork />
         <Industries />
