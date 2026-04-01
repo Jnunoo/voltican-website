@@ -1,95 +1,163 @@
+"use client";
+
+import { useState, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
+
 const industries = [
   {
     name: "Financial Services",
-    areas: "Banking, Insurance, Wealth Management",
-    icon: (
-      <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
-      </svg>
-    ),
+    tags: ["Financial Services", "Wealth Management", "Insurance"],
+    imgUrl:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1740&auto=format&fit=crop",
   },
   {
     name: "Healthcare",
-    areas: "Medical Devices, Pharmaceuticals, Providers",
-    icon: (
-      <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-      </svg>
-    ),
-  },
-  {
-    name: "Government",
-    areas: "Federal, State, Public Sector",
-    icon: (
-      <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
-      </svg>
-    ),
+    tags: ["Healthcare", "Medical Devices", "Pharmaceuticals"],
+    imgUrl:
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1740&auto=format&fit=crop",
   },
   {
     name: "Manufacturing",
-    areas: "Supply Chain, Distribution, Quality",
-    icon: (
-      <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-      </svg>
-    ),
+    tags: ["Manufacturing", "Supply Chain", "Distribution"],
+    imgUrl:
+      "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=1740&auto=format&fit=crop",
+  },
+  {
+    name: "Professional Services",
+    tags: ["Professional Services", "Consulting", "Legal"],
+    imgUrl:
+      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1740&auto=format&fit=crop",
+  },
+  {
+    name: "Government",
+    tags: ["Federal", "State & Local", "Public Sector"],
+    imgUrl:
+      "https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?q=80&w=1740&auto=format&fit=crop",
   },
   {
     name: "Telecommunications",
-    areas: "Network, Infrastructure, 5G",
-    icon: (
-      <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
-      </svg>
-    ),
-  },
-  {
-    name: "Education",
-    areas: "Higher Ed, EdTech, Research",
-    icon: (
-      <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
-      </svg>
-    ),
+    tags: ["Telecom", "Network", "5G Infrastructure"],
+    imgUrl:
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1740&auto=format&fit=crop",
   },
 ];
 
-import ScrollReveal from "./ScrollReveal";
+const CARDS_PER_VIEW = 4;
 
 export default function Industries() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const canPrev = currentIndex > 0;
+  const canNext = currentIndex + CARDS_PER_VIEW < industries.length;
+
+  const slide = (direction: "prev" | "next") => {
+    if (isAnimating) return;
+    if (direction === "prev" && !canPrev) return;
+    if (direction === "next" && !canNext) return;
+
+    setIsAnimating(true);
+    const shift = direction === "next" ? 1 : -1;
+    const cardWidthPct = 100 / CARDS_PER_VIEW;
+
+    if (trackRef.current) {
+      trackRef.current.style.transition = "transform 480ms cubic-bezier(0.4,0,0.2,1)";
+      trackRef.current.style.transform = `translateX(${-shift * cardWidthPct}%)`;
+
+      setTimeout(() => {
+        setCurrentIndex((prev) => prev + shift);
+        if (trackRef.current) {
+          trackRef.current.style.transition = "none";
+          trackRef.current.style.transform = "translateX(0)";
+        }
+        setIsAnimating(false);
+      }, 480);
+    }
+  };
+
+  // Build the visible window (current + 1 extra for smooth slide)
+  const visibleItems = industries.slice(
+    currentIndex,
+    currentIndex + CARDS_PER_VIEW + 1
+  );
+
   return (
-    <section id="industries" className="py-20 lg:py-28 bg-surface-light">
+    <section id="industries" className="py-20 lg:py-28 bg-white">
       <div className="mx-auto max-w-7xl px-6">
         <ScrollReveal>
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-brand-blue font-semibold text-sm tracking-widest uppercase mb-3">
-              Industries
-            </p>
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-brand-navy leading-tight">
-              Deep expertise across key verticals
-            </h2>
-            <p className="mt-4 text-text-muted text-lg">
-              Industry-specific solutions built on real understanding of your
-              regulatory environment, workflows, and competitive pressures.
-            </p>
+          {/* Header row */}
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <p className="text-brand-blue font-semibold text-sm tracking-widest uppercase mb-3">
+                Industries
+              </p>
+              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-brand-navy leading-tight">
+                Industries we know inside out
+              </h2>
+            </div>
+
+            {/* Navigation arrows */}
+            <div className="flex items-center gap-2 shrink-0 ml-6">
+              <button
+                onClick={() => slide("prev")}
+                disabled={!canPrev || isAnimating}
+                aria-label="Previous industry"
+                className="w-10 h-10 rounded-full border border-brand-navy/20 flex items-center justify-center text-brand-navy hover:bg-brand-navy hover:text-white hover:border-brand-navy transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-brand-navy"
+              >
+                <ChevronLeft size={18} />
+              </button>
+              <button
+                onClick={() => slide("next")}
+                disabled={!canNext || isAnimating}
+                aria-label="Next industry"
+                className="w-10 h-10 rounded-full border border-brand-navy/20 flex items-center justify-center text-brand-navy hover:bg-brand-navy hover:text-white hover:border-brand-navy transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-brand-navy"
+              >
+                <ChevronRight size={18} />
+              </button>
+            </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {industries.map((industry) => (
-              <div
-                key={industry.name}
-                className="reveal-child bg-white rounded-2xl p-8 border border-surface-muted/50 hover:shadow-lg hover:border-brand-blue/20 transition-all group flex flex-col items-start"
-              >
-                <div className="w-14 h-14 rounded-xl bg-brand-navy/5 text-brand-navy flex items-center justify-center mb-5 group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                  {industry.icon}
+          {/* Cards carousel */}
+          <div className="overflow-hidden rounded-2xl">
+            <div
+              ref={trackRef}
+              className="flex"
+              style={{ transform: "translateX(0)" }}
+            >
+              {visibleItems.map((industry, idx) => (
+                <div
+                  key={`${currentIndex}-${idx}`}
+                  className="shrink-0 px-1.5 first:pl-0 last:pr-0"
+                  style={{ width: `${100 / CARDS_PER_VIEW}%` }}
+                >
+                  <div className="relative overflow-hidden rounded-2xl group h-80 lg:h-96 cursor-pointer">
+                    {/* Photo */}
+                    <img
+                      src={industry.imgUrl}
+                      alt={industry.name}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+
+                    {/* Subtle gradient overlay so tags are readable */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+
+                    {/* Tag pills — bottom left */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col items-start gap-1.5">
+                      {industry.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="inline-block bg-white/90 backdrop-blur-sm text-brand-navy text-xs font-semibold px-3 py-1 rounded-md leading-none"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-lg font-heading font-bold text-brand-navy mb-1">
-                  {industry.name}
-                </h3>
-                <p className="text-text-muted text-sm">{industry.areas}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </ScrollReveal>
       </div>

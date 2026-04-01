@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import { TestimonialCard } from "@/components/ui/testimonial-cards";
 import ScrollReveal from "./ScrollReveal";
 
 const metrics = [
@@ -8,20 +12,40 @@ const metrics = [
 
 const testimonials = [
   {
-    quote:
+    id: 11,
+    testimonial:
       "Voltican transformed our data infrastructure and integrated AI into our forecasting pipeline — the ROI was visible within the first quarter.",
-    name: "VP of Technology",
-    company: "Fortune 500 Healthcare Company",
+    author: "VP of Technology",
+    role: "Fortune 500 Healthcare Company",
   },
   {
-    quote:
+    id: 24,
+    testimonial:
       "Their listening-first approach set them apart. They didn't just implement technology — they understood our business challenges and built solutions around them.",
-    name: "Chief Data Officer",
-    company: "National Financial Services Firm",
+    author: "Chief Data Officer",
+    role: "National Financial Services Firm",
+  },
+  {
+    id: 32,
+    testimonial:
+      "From cloud migration to AI-powered analytics, Voltican delivered on every milestone — on time and under budget. We've renewed our engagement three years running.",
+    author: "Director of IT Operations",
+    role: "Global Manufacturing Enterprise",
   },
 ];
 
 export default function SocialProof() {
+  const [positions, setPositions] = useState<
+    ("front" | "middle" | "back")[]
+  >(["front", "middle", "back"]);
+
+  const handleShuffle = () => {
+    const newPositions = [...positions];
+    const last = newPositions.pop();
+    if (last) newPositions.unshift(last);
+    setPositions(newPositions);
+  };
+
   return (
     <section className="py-20 lg:py-28 bg-white">
       <div className="mx-auto max-w-7xl px-6">
@@ -53,47 +77,39 @@ export default function SocialProof() {
             ))}
           </div>
 
-          {/* Testimonials */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map((t) => (
-              <div
-                key={t.name}
-                className="reveal-child relative bg-surface-light rounded-2xl p-8 lg:p-10 border border-surface-muted/50"
-              >
-                {/* Quote mark */}
-                <svg
-                  className="absolute top-6 right-8 w-10 h-10 text-brand-blue/10"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z" />
-                </svg>
-                <blockquote className="text-brand-navy leading-relaxed text-lg font-medium mb-6">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-brand-blue/10 flex items-center justify-center">
-                    <svg
-                      width="20"
-                      height="20"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      viewBox="0 0 24 24"
-                      className="text-brand-blue"
-                    >
-                      <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-brand-navy text-sm">
-                      {t.name}
-                    </div>
-                    <div className="text-text-muted text-xs">{t.company}</div>
-                  </div>
-                </div>
+          {/* Draggable testimonial cards */}
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            {/* Left text */}
+            <div className="lg:w-1/2 text-center lg:text-left">
+              <h3 className="text-2xl font-heading font-bold text-brand-navy mb-4">
+                What our clients say
+              </h3>
+              <p className="text-text-muted leading-relaxed mb-4">
+                Drag the top card to shuffle through enterprise client
+                testimonials. Each engagement represents a real partnership
+                built on trust and measurable outcomes.
+              </p>
+              <p className="text-sm text-brand-blue font-medium">
+                ← Swipe the card to see more
+              </p>
+            </div>
+
+            {/* Cards stack */}
+            <div className="lg:w-1/2 flex justify-center">
+              <div className="relative -ml-[50px] h-[450px] w-[350px]">
+                {testimonials.map((testimonial, index) => (
+                  <TestimonialCard
+                    key={testimonial.id}
+                    id={testimonial.id}
+                    testimonial={testimonial.testimonial}
+                    author={testimonial.author}
+                    role={testimonial.role}
+                    handleShuffle={handleShuffle}
+                    position={positions[index]}
+                  />
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </ScrollReveal>
       </div>

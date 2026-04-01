@@ -1,74 +1,187 @@
-import ScrollReveal from "./ScrollReveal";
+"use client";
 
-const stats = [
-  { value: "15+", label: "Years of Excellence" },
-  { value: "6", label: "Core Practice Areas" },
-  { value: "8+", label: "Technology Partners" },
-  { value: "3", label: "Global Offices" },
+import { motion } from "framer-motion";
+import {
+  Brain,
+  BarChart3,
+  Settings2,
+  Users,
+  ShieldCheck,
+  Lightbulb,
+} from "lucide-react";
+
+const leftCards = [
+  {
+    icon: Brain,
+    title: "AI-First Strategy",
+    description:
+      "We embed artificial intelligence into your core business processes — not just as a prototype, but as lasting operational infrastructure.",
+  },
+  {
+    icon: BarChart3,
+    title: "Data-Driven Decisions",
+    description:
+      "Turn raw data into executive-grade insights with predictive analytics, real-time KPIs, and AI/ML pipelines built for scale.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Compliance & Governance",
+    description:
+      "GDPR, HIPAA, and PCI DSS frameworks that protect your data estate while keeping your organization AI-ready.",
+  },
 ];
+
+const rightCards = [
+  {
+    icon: Settings2,
+    title: "Enterprise Modernization",
+    description:
+      "Cloud migration, DevSecOps, and modern ERP implementations on SAP, Salesforce, and Dynamics 365 — delivered end-to-end.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Innovation at Scale",
+    description:
+      "Leverage intelligent automation, RPA, and process mining to eliminate manual work and unlock team capacity for high-value work.",
+  },
+  {
+    icon: Users,
+    title: "People-Centered Approach",
+    description:
+      "Our listening-first model ensures every solution is shaped around what matters most to your organization and its people.",
+  },
+];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.12, duration: 0.55, ease: [0.4, 0, 0.2, 1] },
+  }),
+};
 
 export default function About() {
   return (
-    <section id="about" className="py-20 lg:py-28 bg-white">
+    <section
+      id="about"
+      className="py-20 lg:py-28"
+      style={{ background: "linear-gradient(135deg, #003e6a 0%, #00284a 60%, #001d36 100%)" }}
+    >
       <div className="mx-auto max-w-7xl px-6">
-        <ScrollReveal>
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left — text */}
-            <div>
-              <p className="text-brand-blue font-semibold text-sm tracking-widest uppercase mb-3">
-                Who We Are
-              </p>
-              <h2 className="text-3xl lg:text-4xl font-heading font-bold text-brand-navy leading-tight">
-                Transforming enterprise vision into{" "}
-                <span className="text-brand-blue">AI-era reality</span>
-              </h2>
-              <p className="mt-6 text-text-muted leading-relaxed text-lg">
-                Voltican Inc is a global management consulting, technology services,
-                and outsourcing company headquartered in Houston, Texas. Since 2009
-                we&apos;ve helped organizations of all sizes harness technology to create
-                sustainable value.
-              </p>
-              <p className="mt-4 text-text-muted leading-relaxed">
-                We don&apos;t just build AI prototypes — we integrate artificial
-                intelligence into your core business processes, enterprise
-                platforms, and data infrastructure to deliver measurable,
-                lasting results. Our listening-first approach ensures every
-                solution is built around what matters most to your organization.
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <a
-                  href="#services"
-                  className="inline-flex items-center justify-center h-11 px-6 rounded-full bg-brand-blue text-white font-semibold text-sm hover:bg-brand-blue/90 transition-colors"
-                >
-                  Explore Services
-                </a>
-                <a
-                  href="#contact"
-                  className="inline-flex items-center justify-center h-11 px-6 rounded-full border-2 border-brand-navy/20 text-brand-navy font-semibold text-sm hover:bg-surface-light transition-colors"
-                >
-                  Get in Touch
-                </a>
-              </div>
-            </div>
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-14"
+        >
+          <p className="text-brand-orange font-semibold text-sm tracking-widest uppercase mb-3">
+            Who We Are
+          </p>
+          <h2 className="text-3xl lg:text-4xl font-heading font-bold text-white leading-tight">
+            How we create value
+          </h2>
+          <p className="mt-4 text-white/55 text-lg max-w-2xl mx-auto">
+            Voltican Inc. is a global IT consulting firm headquartered in Houston,
+            TX. Since 2009 we've helped enterprises harness technology to build
+            sustainable competitive advantage.
+          </p>
+        </motion.div>
 
-            {/* Right — stats grid */}
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat) => (
+        {/* 3-column layout */}
+        <div className="grid lg:grid-cols-[1fr_360px_1fr] gap-5 items-start">
+          {/* Left cards */}
+          <div className="flex flex-col gap-5">
+            {leftCards.map((card, i) => (
+              <motion.div
+                key={card.title}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={cardVariants}
+                className="group rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+              >
+                <div className="w-10 h-10 rounded-full bg-brand-blue/20 border border-brand-blue/30 flex items-center justify-center mb-4 group-hover:bg-brand-blue/30 transition-colors">
+                  <card.icon className="w-5 h-5 text-brand-ice" />
+                </div>
+                <h3 className="text-white font-heading font-bold text-lg mb-2">
+                  {card.title}
+                </h3>
+                <p className="text-white/55 text-sm leading-relaxed">
+                  {card.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Center photo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+            className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/40 lg:sticky lg:top-28"
+            style={{ minHeight: "480px" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=900&auto=format&fit=crop"
+              alt="Voltican consultants collaborating"
+              className="w-full h-full object-cover"
+              style={{ minHeight: "480px" }}
+            />
+            {/* Subtle bottom gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 via-transparent to-transparent" />
+
+            {/* Floating stat badge */}
+            <div className="absolute bottom-5 left-5 right-5 flex gap-3">
+              {[
+                { value: "15+", label: "Years" },
+                { value: "6", label: "Practices" },
+                { value: "8+", label: "Partners" },
+              ].map((s) => (
                 <div
-                  key={stat.label}
-                  className="reveal-child bg-surface-light rounded-2xl p-8 text-center border border-surface-muted/50"
+                  key={s.label}
+                  className="flex-1 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 p-3 text-center"
                 >
-                  <div className="text-4xl lg:text-5xl font-heading font-bold text-brand-blue">
-                    {stat.value}
+                  <div className="text-xl font-heading font-bold text-white">
+                    {s.value}
                   </div>
-                  <div className="mt-2 text-sm font-medium text-text-muted">
-                    {stat.label}
+                  <div className="text-[11px] text-white/60 font-medium">
+                    {s.label}
                   </div>
                 </div>
               ))}
             </div>
+          </motion.div>
+
+          {/* Right cards */}
+          <div className="flex flex-col gap-5">
+            {rightCards.map((card, i) => (
+              <motion.div
+                key={card.title}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={cardVariants}
+                className="group rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+              >
+                <div className="w-10 h-10 rounded-full bg-brand-blue/20 border border-brand-blue/30 flex items-center justify-center mb-4 group-hover:bg-brand-blue/30 transition-colors">
+                  <card.icon className="w-5 h-5 text-brand-ice" />
+                </div>
+                <h3 className="text-white font-heading font-bold text-lg mb-2">
+                  {card.title}
+                </h3>
+                <p className="text-white/55 text-sm leading-relaxed">
+                  {card.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
-        </ScrollReveal>
+        </div>
       </div>
     </section>
   );

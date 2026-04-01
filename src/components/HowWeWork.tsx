@@ -56,20 +56,20 @@ const timelineData = [
 
 export default function HowWeWork() {
   return (
-    <section id="how-we-work" className="relative bg-black">
+    <section id="how-we-work" className="relative bg-brand-navy">
       {/* Section header */}
       <div className="relative z-10 pt-20 lg:pt-28 text-center px-6">
-        <p className="text-blue-400 font-semibold text-sm tracking-widest uppercase mb-3">
+        <p className="text-brand-orange font-semibold text-sm tracking-widest uppercase mb-3">
           How We Work
         </p>
         <h2 className="text-3xl lg:text-4xl font-heading font-bold text-white leading-tight">
           A proven methodology, evolved for AI
         </h2>
-        <p className="mt-4 text-white/60 text-lg max-w-2xl mx-auto">
+        <p className="mt-4 text-brand-ice/60 text-lg max-w-2xl mx-auto">
           Our four-phase approach ensures every engagement delivers measurable
           business impact — not just technology for technology&apos;s sake.
           <br />
-          <span className="text-white/40 text-sm mt-2 inline-block">
+          <span className="text-brand-ice/40 text-sm mt-2 inline-block">
             Click a node to explore each phase. Connected nodes pulse to show
             dependencies.
           </span>
