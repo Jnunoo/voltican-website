@@ -40,8 +40,8 @@ export function TestimonialCard({
           position === "front"
             ? "0%"
             : position === "middle"
-            ? "33%"
-            : "66%",
+            ? "12%"
+            : "24%",
       }}
       drag={true}
       dragElastic={0.35}
@@ -62,14 +62,14 @@ export function TestimonialCard({
         dragRef.current = 0;
       }}
       transition={{ duration: 0.35 }}
-      className={`absolute left-0 top-0 grid h-[450px] w-[350px] select-none place-content-center space-y-6 rounded-2xl border-2 border-brand-steel/30 bg-brand-navy/90 p-6 shadow-xl backdrop-blur-md ${
+      className={`absolute left-0 top-0 grid h-[420px] w-[clamp(260px,90vw,320px)] select-none place-content-center space-y-6 rounded-2xl border-2 border-brand-steel/30 bg-brand-navy/90 p-6 shadow-xl backdrop-blur-md ${
         isFront ? "cursor-grab active:cursor-grabbing" : ""
       }`}
     >
       <img
         src={`https://i.pravatar.cc/128?img=${id}`}
         alt={`Avatar of ${author}`}
-        className="pointer-events-none mx-auto h-32 w-32 rounded-full border-2 border-brand-steel/40 bg-brand-ice object-cover"
+        className="pointer-events-none mx-auto h-20 w-20 rounded-full border-2 border-brand-steel/40 bg-brand-ice object-cover"
       />
       <span className="text-center text-lg italic text-brand-ice/80">
         &ldquo;{testimonial}&rdquo;
