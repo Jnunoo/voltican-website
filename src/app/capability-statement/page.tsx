@@ -124,8 +124,7 @@ const naicsCodes = [
 const engagementModels = [
   "Free AI Readiness Assessment",
   "AI Pilot Program (8–12 wk POC)",
-  "AI Implementation",
-  "AI Managed Services",
+  "AI Implementation & Managed Services",
 ];
 
 const aiPartners = [
@@ -699,7 +698,7 @@ function CapabilityDocument() {
           {/* BY THE NUMBERS */}
           <div>
             <SectionLabel>By the Numbers</SectionLabel>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "6px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "4px" }}>
               {[
                 { stat: "17+", label: "Years Enterprise\nDelivery", top: "#0a67c7", glow: "rgba(10,103,199,0.22)" },
                 { stat: "4",   label: "Global Operating\nLocations", top: "#003E6A", glow: "rgba(0,62,106,0.18)" },
@@ -711,17 +710,17 @@ function CapabilityDocument() {
                   border: "1px solid #cddaee",
                   borderTop: `3px solid ${top}`,
                   borderRadius: "0 0 7px 7px",
-                  padding: "8px 10px 6px",
+                  padding: "5px 8px 4px",
                   textAlign: "center",
-                  display: "flex", flexDirection: "column", alignItems: "center", gap: "2px",
+                  display: "flex", flexDirection: "column", alignItems: "center", gap: "1px",
                   boxShadow: `0 4px 16px ${glow}, inset 0 1px 0 rgba(255,255,255,0.95)`,
                 }}>
                   <div style={{
-                    fontSize: "22px", fontWeight: 900, color: top,
+                    fontSize: "18px", fontWeight: 900, color: top,
                     lineHeight: 1, fontFamily: "'Raleway', sans-serif",
                     textShadow: `0 2px 10px ${glow}`,
                   }}>{stat}</div>
-                  <div style={{ fontSize: "8.5px", color: "#4a6383", lineHeight: 1.4, whiteSpace: "pre-line" }}>{label}</div>
+                  <div style={{ fontSize: "8px", color: "#4a6383", lineHeight: 1.35, whiteSpace: "pre-line" }}>{label}</div>
                 </div>
               ))}
             </div>
@@ -784,7 +783,7 @@ function CapabilityDocument() {
       <div style={{
         background: "linear-gradient(135deg, #001226 0%, #002040 50%, #003260 100%)",
         position: "relative", overflow: "hidden",
-        padding: "9px 22px", flexShrink: 0,
+        padding: "5px 22px", flexShrink: 0,
       }}>
         <HexPattern opacity={0.045} />
         <div style={{
@@ -793,20 +792,20 @@ function CapabilityDocument() {
         }} />
         <div style={{ position: "relative", zIndex: 1 }}>
           <div style={{
-            fontSize: "7.5px", fontWeight: 800, letterSpacing: "0.22em",
+            fontSize: "6.5px", fontWeight: 800, letterSpacing: "0.22em",
             textTransform: "uppercase", color: "#7badd4",
-            marginBottom: "5px", display: "flex", alignItems: "center", gap: "6px",
+            marginBottom: "3px", display: "flex", alignItems: "center", gap: "6px",
           }}>
             <span style={{ display: "inline-block", width: "16px", height: "1.5px", background: "#ff9800", borderRadius: "1px" }} />
             Platform Partners
           </div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "3px" }}>
             {platformPartners.map((p) => (
               <span key={p} style={{
                 background: "rgba(255,152,0,0.09)",
                 border: "1px solid rgba(255,152,0,0.26)",
-                borderRadius: "4px", padding: "2px 8px",
-                fontSize: "8.5px", color: "rgba(255,255,255,0.82)", fontWeight: 500,
+                borderRadius: "3px", padding: "1px 6px",
+                fontSize: "7.5px", color: "rgba(255,255,255,0.82)", fontWeight: 500,
               }}>{p}</span>
             ))}
           </div>
