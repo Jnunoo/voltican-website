@@ -317,10 +317,10 @@ function CapabilityDocument() {
       id="capability-doc"
       style={{
         width: "210mm", height: "297mm",
-        background: "#ffffff",
+        background: "linear-gradient(168deg, #ffffff 0%, #f8fafe 40%, #f3f7fc 100%)",
         fontFamily: "'Inter', system-ui, sans-serif",
         fontSize: "10.5px", color: "#1a2d42", lineHeight: 1.45,
-        boxShadow: "0 32px 100px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.06)",
+        boxShadow: "0 32px 100px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 120px rgba(255,255,255,0.4)",
         display: "flex", flexDirection: "column",
         overflow: "hidden", position: "relative",
       }}
@@ -439,10 +439,10 @@ function CapabilityDocument() {
         {/* ── LEFT SIDEBAR ─────────────────────────────────────────────────── */}
         <aside style={{
           width: "174px", flexShrink: 0,
-          background: "linear-gradient(180deg, #f2f6fc 0%, #e8f0fc 100%)",
+          background: "linear-gradient(180deg, #f4f8fd 0%, #edf3fb 50%, #e8f0fc 100%)",
           backgroundImage: "radial-gradient(circle, rgba(10,103,199,0.11) 1px, transparent 1px)",
           backgroundSize: "13px 13px",
-          borderRight: "1px solid #cddaee",
+          borderRight: "1px solid #c0d4ea",
           padding: "11px 10px",
           display: "flex", flexDirection: "column", gap: "8px",
           position: "relative", overflow: "hidden",
@@ -457,11 +457,11 @@ function CapabilityDocument() {
           {/* WHO WE ARE */}
           <SideSection label="Who We Are">
             <div style={{
-              background: "linear-gradient(135deg, #fff 0%, #f0f6ff 100%)",
+              background: "linear-gradient(145deg, #ffffff 0%, #f0f6ff 60%, #e8f1fc 100%)",
               border: "1px solid #c5d8f7",
               borderRadius: "6px", padding: "7px 8px",
               fontSize: "9.5px", lineHeight: 1.65, color: "#1a2d42",
-              boxShadow: "0 1px 5px rgba(10,103,199,0.07), inset 0 1px 0 rgba(255,255,255,0.9)",
+              boxShadow: "0 2px 8px rgba(10,103,199,0.1), 0 1px 2px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,1)",
             }}>
               <strong style={{ color: "#003E6A" }}>Minority-owned</strong> IT solutions &amp; AI modernization firm.{" "}
               <strong style={{ color: "#003E6A" }}>Founded 2009</strong> | Houston, TX — with operations in Sacramento CA, India &amp; Canada.
@@ -470,10 +470,10 @@ function CapabilityDocument() {
               {["17+ Years", "4 Locations"].map((b) => (
                 <span key={b} style={{
                   flex: 1, textAlign: "center",
-                  background: "linear-gradient(135deg, #003E6A, #0a67c7)",
+                  background: "linear-gradient(145deg, #0a67c7 0%, #003E6A 60%, #002d52 100%)",
                   color: "#fff", borderRadius: "4px",
                   padding: "3.5px 4px", fontSize: "9px", fontWeight: 700,
-                  boxShadow: "0 2px 8px rgba(10,103,199,0.35)",
+                  boxShadow: "0 3px 10px rgba(10,103,199,0.4), 0 1px 2px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)",
                 }}>{b}</span>
               ))}
             </div>
@@ -528,10 +528,10 @@ function CapabilityDocument() {
           {/* PRIMARY CONTACT */}
           <SideSection label="Primary Contact">
             <div style={{
-              background: "linear-gradient(135deg, #fff 0%, #f4f8ff 100%)",
+              background: "linear-gradient(145deg, #ffffff 0%, #f4f8ff 60%, #eaf2fc 100%)",
               border: "1px solid #c5d8f7", borderRadius: "6px",
               padding: "7px 8px",
-              boxShadow: "0 1px 5px rgba(10,103,199,0.07), inset 0 1px 0 rgba(255,255,255,0.9)",
+              boxShadow: "0 3px 10px rgba(10,103,199,0.1), 0 1px 3px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,1)",
             }}>
               <div style={{ fontWeight: 800, fontSize: "11px", color: "#003E6A", marginBottom: "1px" }}>Eric Elewokor</div>
               <div style={{ fontSize: "9px", fontWeight: 600, color: "#0a67c7", marginBottom: "5px", letterSpacing: "0.03em" }}>
@@ -571,13 +571,13 @@ function CapabilityDocument() {
 
           {/* Company description */}
           <div style={{
-            background: "linear-gradient(135deg, #f0f7ff 0%, #e6f0fe 100%)",
+            background: "linear-gradient(145deg, #f8fbff 0%, #f0f7ff 40%, #e6f0fe 100%)",
             border: "1px solid #c5d8f7",
             borderLeft: "4px solid #0a67c7",
             borderRadius: "0 7px 7px 0",
             padding: "9px 12px",
             fontSize: "10px", lineHeight: 1.7, color: "#1a2d42",
-            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 10px rgba(10,103,199,0.07)",
+            boxShadow: "0 3px 12px rgba(10,103,199,0.1), 0 1px 3px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,1)",
           }}>
             <strong style={{ color: "#003E6A" }}>Voltican</strong> is a minority-owned IT solutions and AI modernization firm with{" "}
             <strong style={{ color: "#003E6A" }}>17+ years</strong> of proven enterprise delivery across commercial, federal, state, and local government clients.
@@ -591,8 +591,8 @@ function CapabilityDocument() {
             <SectionLabel>Core Competencies</SectionLabel>
             <div style={{
               display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
-              border: "1px solid #cddaee", borderRadius: "8px", overflow: "hidden",
-              boxShadow: "0 4px 20px rgba(0,62,106,0.09), inset 0 1px 0 rgba(255,255,255,0.6)",
+              border: "1px solid #bdd0e8", borderRadius: "8px", overflow: "hidden",
+              boxShadow: "0 6px 24px rgba(0,62,106,0.12), 0 2px 6px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6)",
             }}>
               {competencies.map((col, i) => (
                 <div key={col.title} style={{
@@ -607,7 +607,7 @@ function CapabilityDocument() {
                     padding: "7px 8px",
                     display: "flex", alignItems: "center", gap: "6px",
                     minHeight: "32px",
-                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.1)",
+                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.15)",
                   }}>
                     <span style={{ color: col.accent ? "#ffb347" : "rgba(255,255,255,0.65)", display: "flex", flexShrink: 0 }}>
                       {col.icon}
@@ -644,9 +644,9 @@ function CapabilityDocument() {
             <SectionLabel>Past Performance</SectionLabel>
             <table style={{
               width: "100%", borderCollapse: "collapse",
-              fontSize: "8px", border: "1px solid #cddaee",
+              fontSize: "8px", border: "1px solid #bdd0e8",
               borderRadius: "7px", overflow: "hidden",
-              boxShadow: "0 2px 12px rgba(0,62,106,0.06)",
+              boxShadow: "0 4px 16px rgba(0,62,106,0.1), 0 1px 3px rgba(0,0,0,0.06)",
             }}>
               <thead>
                 <tr style={{ background: "linear-gradient(90deg, #002040 0%, #003E6A 50%, #0a4d8c 100%)" }}>
@@ -685,8 +685,11 @@ function CapabilityDocument() {
                   borderRadius: "20px", padding: "3px 12px",
                   fontSize: "9.5px", fontWeight: 600,
                   color: i === 0 ? "#9e5c00" : "#0a67c7",
-                  background: i === 0 ? "rgba(255,152,0,0.07)" : "rgba(10,103,199,0.05)",
+                  background: i === 0
+                    ? "linear-gradient(145deg, rgba(255,152,0,0.08) 0%, rgba(255,152,0,0.03) 100%)"
+                    : "linear-gradient(145deg, rgba(10,103,199,0.07) 0%, rgba(10,103,199,0.02) 100%)",
                   letterSpacing: "0.03em",
+                  boxShadow: "0 1px 4px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.7)",
                 }}>
                   {i === 0 && <span style={{ marginRight: "4px" }}>★</span>}
                   {m}
@@ -706,14 +709,14 @@ function CapabilityDocument() {
                 { stat: "200+",label: "Projects\nDelivered",  top: "#e67e00", glow: "rgba(230,126,0,0.22)" },
               ].map(({ stat, label, top, glow }) => (
                 <div key={stat} style={{
-                  background: "linear-gradient(160deg, #fff 0%, #f4f8ff 100%)",
-                  border: "1px solid #cddaee",
+                  background: "linear-gradient(160deg, #ffffff 0%, #f8fbff 40%, #f0f6ff 100%)",
+                  border: "1px solid #bdd0e8",
                   borderTop: `3px solid ${top}`,
                   borderRadius: "0 0 7px 7px",
                   padding: "5px 8px 4px",
                   textAlign: "center",
                   display: "flex", flexDirection: "column", alignItems: "center", gap: "1px",
-                  boxShadow: `0 4px 16px ${glow}, inset 0 1px 0 rgba(255,255,255,0.95)`,
+                  boxShadow: `0 4px 14px ${glow}, 0 2px 4px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,1)`,
                 }}>
                   <div style={{
                     fontSize: "18px", fontWeight: 900, color: top,
@@ -757,11 +760,12 @@ function CapabilityDocument() {
                 },
               ].map(({ icon, title, body, accent, bg, bdr }) => (
                 <div key={title} style={{
-                  background: bg, border: `1px solid ${bdr}`,
+                  background: `linear-gradient(145deg, #ffffff 0%, ${bg} 100%)`,
+                  border: `1px solid ${bdr}`,
                   borderLeft: `3px solid ${accent}`,
                   borderRadius: "0 6px 6px 0", padding: "8px 10px",
                   display: "flex", flexDirection: "column", gap: "3px",
-                  boxShadow: "0 2px 8px rgba(10,103,199,0.05)",
+                  boxShadow: "0 4px 14px rgba(10,103,199,0.08), 0 2px 4px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,1)",
                 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                     {icon}
@@ -802,10 +806,11 @@ function CapabilityDocument() {
           <div style={{ display: "flex", flexWrap: "wrap", gap: "3px" }}>
             {platformPartners.map((p) => (
               <span key={p} style={{
-                background: "rgba(255,152,0,0.09)",
+                background: "linear-gradient(145deg, rgba(255,152,0,0.12) 0%, rgba(255,152,0,0.05) 100%)",
                 border: "1px solid rgba(255,152,0,0.26)",
                 borderRadius: "3px", padding: "1px 6px",
                 fontSize: "7.5px", color: "rgba(255,255,255,0.82)", fontWeight: 500,
+                boxShadow: "0 1px 3px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.08)",
               }}>{p}</span>
             ))}
           </div>
