@@ -6,6 +6,7 @@ import { CheckCircle, Zap, Globe, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import ShaderBackground from "@/components/ui/shader-background";
 import Link from "next/link";
+import HeroImageSwitcher, { useHeroImage } from "@/components/HeroImageSwitcher";
 
 const valueProps = [
   { icon: CheckCircle, label: "Enterprise-grade AI expertise" },
@@ -14,26 +15,34 @@ const valueProps = [
 ];
 
 export default function Hero() {
+  const { active, select } = useHeroImage();
+
   return (
     <section className="relative h-screen w-full overflow-hidden flex flex-col justify-between">
-      {/* WebGL Shader Background */}
+      {/* WebGL Shader Background — always present */}
       <ShaderBackground />
 
-      {/* Corporate building — subtle, blended into hero background */}
-      <div className="absolute inset-0 z-[5] pointer-events-none">
-        <Image
-          src="/hero-building.png"
-          alt=""
-          fill
-          className="object-cover object-center opacity-[0.2]"
-          style={{ mixBlendMode: "luminosity" }}
-          priority
-          aria-hidden="true"
-        />
-        {/* Vignette: fade edges */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#001f3d]/70 via-transparent to-[#001f3d]/50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#001f3d]/50 via-transparent to-transparent" />
-      </div>
+      {/* ── Hero Background Image Layer ── */}
+      {active.src && (
+        <div className="absolute inset-0 z-[5] pointer-events-none transition-opacity duration-700">
+          <Image
+            key={active.id}
+            src={active.src}
+            alt=""
+            fill
+            className="object-cover object-center transition-opacity duration-700"
+            style={{
+              opacity: active.opacity,
+              mixBlendMode: active.blend as React.CSSProperties["mixBlendMode"],
+            }}
+            priority
+            aria-hidden="true"
+          />
+          {/* Edge vignette */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#001f3d]/70 via-transparent to-[#001f3d]/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#001f3d]/50 via-transparent to-transparent" />
+        </div>
+      )}
 
       {/* Gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent via-40% to-black/50 pointer-events-none z-10" />
@@ -58,7 +67,7 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Headline — large, left-aligned */}
+          {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -108,7 +117,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Lower bar — value props left, featured article right */}
+        {/* Lower bar — value props left, switcher + article right */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -125,28 +134,34 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* Featured article card */}
-          <Link
-            href="/case-studies/genai-erp-transformation"
-            className="group hidden sm:flex items-center gap-3 bg-white/8 hover:bg-white/12 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 transition-all duration-300 max-w-xs cursor-pointer"
-          >
-            <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-brand-blue/30 flex items-center justify-center">
-              <Image
-                src="/hero-building.png"
-                alt=""
-                width={56}
-                height={56}
-                className="object-cover w-full h-full opacity-70"
-              />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-white/40 text-[11px] uppercase tracking-widest mb-0.5 font-medium">Featured case study</p>
-              <p className="text-white/85 text-sm font-medium leading-snug line-clamp-2 group-hover:text-white transition-colors">
-                Embedding GenAI into a Legacy ERP to Cut Processing Time by 71%
-              </p>
-            </div>
-            <ArrowRight className="w-4 h-4 text-white/40 group-hover:text-brand-orange shrink-0 transition-colors" />
-          </Link>
+          {/* Right side: switcher + featured article stacked */}
+          <div className="flex flex-col items-end gap-3">
+            {/* ── Background Image Switcher ── */}
+            <HeroImageSwitcher onSelect={select} current={active} />
+
+            {/* Featured article card */}
+            <Link
+              href="/case-studies/genai-erp-transformation"
+              className="group hidden sm:flex items-center gap-3 bg-white/8 hover:bg-white/12 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 transition-all duration-300 max-w-xs cursor-pointer"
+            >
+              <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-brand-blue/30 flex items-center justify-center">
+                <Image
+                  src="/hero-building.png"
+                  alt=""
+                  width={56}
+                  height={56}
+                  className="object-cover w-full h-full opacity-70"
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-white/40 text-[11px] uppercase tracking-widest mb-0.5 font-medium">Featured case study</p>
+                <p className="text-white/85 text-sm font-medium leading-snug line-clamp-2 group-hover:text-white transition-colors">
+                  Embedding GenAI into a Legacy ERP to Cut Processing Time by 71%
+                </p>
+              </div>
+              <ArrowRight className="w-4 h-4 text-white/40 group-hover:text-brand-orange shrink-0 transition-colors" />
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

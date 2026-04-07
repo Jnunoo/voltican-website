@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { CircularGallery, type GalleryItem } from '@/components/ui/circular-gallery';
 
 const aiServiceItems: GalleryItem[] = [
@@ -80,6 +80,19 @@ export default function AIServices() {
     return () => window.removeEventListener('resize', check);
   }, []);
 
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add('visible'); obs.disconnect(); } },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <section
       id="ai-services"
@@ -89,8 +102,24 @@ export default function AIServices() {
       <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-brand-blue/10 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-brand-orange/5 blur-3xl pointer-events-none" />
 
+      {/* Ghost watermark */}
+      <div
+        aria-hidden="true"
+        className="ghost-text"
+        style={{
+          top: '50%',
+          right: '-3%',
+          transform: 'translateY(-50%)',
+          fontSize: 'clamp(120px, 22vw, 260px)',
+          color: 'rgba(255,255,255,0.07)',
+          fontFamily: 'var(--font-heading, Inter, sans-serif)',
+        }}
+      >
+        AI
+      </div>
+
       {/* Section header */}
-      <div className="relative z-10 text-center px-6 mb-4">
+      <div ref={headerRef} className="reveal relative z-10 text-center px-6 mb-4">
         <p className="text-brand-orange font-semibold text-sm tracking-widest uppercase mb-3">
           AI Services
         </p>

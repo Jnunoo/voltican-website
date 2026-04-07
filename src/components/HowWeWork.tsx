@@ -1,6 +1,7 @@
 'use client';
 
 import { Search, Map, Rocket, TrendingUp } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 
 const steps = [
   {
@@ -37,12 +38,52 @@ const steps = [
   },
 ];
 
+function useReveal(ref: React.RefObject<HTMLElement | null>, delay = 0) {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (delay) el.style.transitionDelay = `${delay}ms`;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) { el.classList.add('visible'); observer.disconnect(); }
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [ref, delay]);
+}
+
 export default function HowWeWork() {
+  const headingRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  useReveal(headingRef as React.RefObject<HTMLElement | null>);
+  useReveal(gridRef as React.RefObject<HTMLElement | null>);
+
   return (
-    <section id="how-we-work" className="min-h-screen py-20 lg:py-28 bg-brand-navy flex flex-col justify-center">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="how-we-work" className="relative min-h-screen py-20 lg:py-28 bg-brand-navy flex flex-col justify-center overflow-hidden">
+
+      {/* Ghost watermark — large faint "PROCESS" */}
+      <div
+        aria-hidden="true"
+        className="ghost-text"
+        style={{
+          bottom: '-2%',
+          right: '-2%',
+          fontSize: 'clamp(80px, 15vw, 180px)',
+          color: 'rgba(255,255,255,0.08)',
+          fontFamily: 'var(--font-heading, Inter, sans-serif)',
+        }}
+      >
+        PROCESS
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Header */}
-        <div className="max-w-2xl mb-16">
+        <div
+          ref={headingRef}
+          className="reveal max-w-2xl mb-16"
+        >
           <p className="text-white/35 font-semibold text-xs tracking-[0.2em] uppercase mb-3">
             How We Work
           </p>
@@ -54,12 +95,15 @@ export default function HowWeWork() {
           </p>
         </div>
 
-        {/* Steps grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4 lg:gap-0">
+        {/* Steps grid — staggered */}
+        <div
+          ref={gridRef}
+          className="reveal grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4 lg:gap-0"
+        >
           {steps.map((step, i) => (
             <div
               key={step.number}
-              className="relative group"
+              className="reveal-child relative group"
             >
               {/* Connector line (not on last item) */}
               {i < steps.length - 1 && (
