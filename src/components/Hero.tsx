@@ -22,22 +22,39 @@ export default function Hero() {
       {/* WebGL Shader Background — always present */}
       <ShaderBackground />
 
-      {/* ── Hero Background Image Layer ── */}
+      {/* ── Hero Background Image/Video Layer ── */}
       {active.src && (
         <div className="absolute inset-0 z-[5] pointer-events-none transition-opacity duration-700">
-          <Image
-            key={active.id}
-            src={active.src}
-            alt=""
-            fill
-            className="object-cover object-center transition-opacity duration-700"
-            style={{
-              opacity: active.opacity,
-              mixBlendMode: active.blend as React.CSSProperties["mixBlendMode"],
-            }}
-            priority
-            aria-hidden="true"
-          />
+          {active.isVideo ? (
+            <video
+              key={active.id}
+              src={active.src}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700"
+              style={{
+                opacity: active.opacity,
+                mixBlendMode: active.blend as React.CSSProperties["mixBlendMode"],
+              }}
+              aria-hidden="true"
+            />
+          ) : (
+            <Image
+              key={active.id}
+              src={active.src}
+              alt=""
+              fill
+              className="object-cover object-center transition-opacity duration-700"
+              style={{
+                opacity: active.opacity,
+                mixBlendMode: active.blend as React.CSSProperties["mixBlendMode"],
+              }}
+              priority
+              aria-hidden="true"
+            />
+          )}
           {/* Edge vignette */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#001f3d]/70 via-transparent to-[#001f3d]/50" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#001f3d]/50 via-transparent to-transparent" />
