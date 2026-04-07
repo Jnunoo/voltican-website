@@ -205,3 +205,15 @@ section {
 .count-animate {
   animation: count-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* ── Print utilities ── */
+@media print {
+  .no-print    { display: none !important; }
+  .print-only  { display: block !important; }
+  @page        { size: A4; margin: 0; }
+  body         { margin: 0 !important; padding: 0 !important; }
+  *            { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+@media screen {
+  .print-only  { display: none !important; }
+}

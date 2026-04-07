@@ -36,8 +36,10 @@ export default function RootLayout({
       className={`${inter.variable} ${raleway.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
-        {/* Global Navbar — visible on every route */}
-        <Navbar />
+        {/* Global Navbar — visible on every route, hidden on print */}
+        <div className="print:hidden">
+          <Navbar />
+        </div>
         {/*
           PageTransition forces React to remount page content on every route
           change (including browser Back), which resets Framer Motion's

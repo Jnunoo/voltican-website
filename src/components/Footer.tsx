@@ -18,6 +18,7 @@ const footerLinks = {
   Company: [
     { label: "About Us", href: "#about" },
     { label: "Industries", href: "#industries" },
+    { label: "Capability Statement", href: "/capability-statement" },
     { label: "Careers", href: "#" },
     { label: "Government", href: "#" },
     { label: "Contact", href: "#contact" },

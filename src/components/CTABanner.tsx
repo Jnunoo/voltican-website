@@ -70,6 +70,15 @@ export default function CTABanner() {
         <p className="mt-6 text-brand-ice/50 text-sm">
           No sales pitch — just a consultative conversation about your AI opportunities.
         </p>
+        <p className="mt-3 text-brand-ice/40 text-sm">
+          Want to review our credentials first?{" "}
+          <a
+            href="/capability-statement"
+            className="text-brand-ice/70 underline underline-offset-2 hover:text-white transition-colors"
+          >
+            View our Capability Statement →
+          </a>
+        </p>
       </div>
     </section>
   );

@@ -214,7 +214,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
         flexShrink: 0,
       }} />
       <span style={{
-        fontSize: "7.5px", fontWeight: 800, textTransform: "uppercase",
+        fontSize: "9px", fontWeight: 800, textTransform: "uppercase",
         letterSpacing: "0.22em", color: "#003E6A",
       }}>{children}</span>
       <div style={{ flex: 1, height: "0.5px", background: "linear-gradient(90deg, #c0d5ee, transparent)" }} />
@@ -229,7 +229,7 @@ function SideSection({ label, children }: { label: string; children: React.React
       <div style={{ display: "flex", alignItems: "center", gap: "5px", marginBottom: "5px" }}>
         <div style={{ width: "14px", height: "1.5px", background: "#ff9800", borderRadius: "1px" }} />
         <span style={{
-          fontSize: "6.5px", fontWeight: 800, textTransform: "uppercase",
+          fontSize: "8px", fontWeight: 800, textTransform: "uppercase",
           letterSpacing: "0.22em", color: "#003E6A",
         }}>{label}</span>
       </div>
@@ -296,6 +296,11 @@ export default function CapabilityStatementPage() {
         @media print {
           .screen-chrome { display: none !important; }
           .print-only    { display: block !important; }
+          /* Hide the site navbar — it's a fixed <header> outside this page */
+          header[class*="fixed"],
+          nav,
+          [class*="print:hidden"],
+          .no-print      { display: none !important; }
           @page { size: A4; margin: 0; }
           body { margin: 0 !important; padding: 0 !important; }
           * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
@@ -315,7 +320,7 @@ function CapabilityDocument() {
         width: "210mm", height: "297mm",
         background: "#ffffff",
         fontFamily: "'Inter', system-ui, sans-serif",
-        fontSize: "9px", color: "#1a2d42", lineHeight: 1.45,
+        fontSize: "10.5px", color: "#1a2d42", lineHeight: 1.45,
         boxShadow: "0 32px 100px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.06)",
         display: "flex", flexDirection: "column",
         overflow: "hidden", position: "relative",
@@ -361,7 +366,7 @@ function CapabilityDocument() {
               priority
             />
             <div style={{
-              fontSize: "6.5px", color: "rgba(255,255,255,0.38)",
+              fontSize: "7.5px", color: "rgba(255,255,255,0.38)",
               letterSpacing: "0.28em", textTransform: "uppercase", marginTop: "1px",
             }}>People · Process · Technology · AI</div>
           </div>
@@ -369,7 +374,7 @@ function CapabilityDocument() {
           {/* Contact 2-col grid */}
           <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "2px" }}>
             <div style={{
-              fontSize: "5.8px", color: "rgba(255,255,255,0.35)",
+              fontSize: "7px", color: "rgba(255,255,255,0.35)",
               letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: "3px",
             }}>Contact Information</div>
             <div style={{ display: "grid", gridTemplateColumns: "auto auto", columnGap: "26px", rowGap: "2.5px" }}>
@@ -383,7 +388,7 @@ function CapabilityDocument() {
                   <svg viewBox="0 0 16 16" fill="none" style={{ width: 9, height: 9, flexShrink: 0 }}>
                     <path d={path} stroke="rgba(255,255,255,0.5)" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                  <span style={{ color: "rgba(255,255,255,0.75)", fontSize: "8px" }}>{text}</span>
+                  <span style={{ color: "rgba(255,255,255,0.75)", fontSize: "9px" }}>{text}</span>
                 </div>
               ))}
             </div>
@@ -399,7 +404,7 @@ function CapabilityDocument() {
                 background: "rgba(255,152,0,0.11)",
                 border: `1px solid ${color}50`,
                 borderRadius: "20px", padding: "2px 9px",
-                fontSize: "6.5px", fontWeight: 700,
+                fontSize: "7.5px", fontWeight: 700,
                 color, letterSpacing: "0.10em", textTransform: "uppercase",
               }}>{label}</div>
             ))}
@@ -423,7 +428,7 @@ function CapabilityDocument() {
               textShadow: "0 1px 6px rgba(0,0,0,0.25)",
             }}>Capability Statement</span>
           </div>
-          <span style={{ fontFamily: "monospace", fontSize: "7px", color: "rgba(255,255,255,0.88)", letterSpacing: "0.04em" }}>
+          <span style={{ fontFamily: "monospace", fontSize: "8.5px", color: "rgba(255,255,255,0.88)", letterSpacing: "0.04em" }}>
             DUNS: 026977626&nbsp;&nbsp;|&nbsp;&nbsp;UEI: M3VMMKVPDGK3&nbsp;&nbsp;|&nbsp;&nbsp;DIR TSO-3996 · CPO-4942
           </span>
         </div>
@@ -456,7 +461,7 @@ function CapabilityDocument() {
               background: "linear-gradient(135deg, #fff 0%, #f0f6ff 100%)",
               border: "1px solid #c5d8f7",
               borderRadius: "6px", padding: "7px 8px",
-              fontSize: "8px", lineHeight: 1.65, color: "#1a2d42",
+              fontSize: "9.5px", lineHeight: 1.65, color: "#1a2d42",
               boxShadow: "0 1px 5px rgba(10,103,199,0.07), inset 0 1px 0 rgba(255,255,255,0.9)",
             }}>
               <strong style={{ color: "#003E6A" }}>Minority-owned</strong> IT solutions &amp; AI modernization firm.{" "}
@@ -468,7 +473,7 @@ function CapabilityDocument() {
                   flex: 1, textAlign: "center",
                   background: "linear-gradient(135deg, #003E6A, #0a67c7)",
                   color: "#fff", borderRadius: "4px",
-                  padding: "3.5px 4px", fontSize: "7.5px", fontWeight: 700,
+                  padding: "3.5px 4px", fontSize: "9px", fontWeight: 700,
                   boxShadow: "0 2px 8px rgba(10,103,199,0.35)",
                 }}>{b}</span>
               ))}
@@ -477,7 +482,7 @@ function CapabilityDocument() {
               marginTop: "4px",
               background: "linear-gradient(90deg, rgba(255,152,0,0.14), rgba(255,152,0,0.04))",
               border: "1px solid rgba(255,152,0,0.28)", borderRadius: "4px",
-              padding: "3px 7px", fontSize: "7.5px", fontWeight: 700,
+              padding: "3px 7px", fontSize: "9px", fontWeight: 700,
               color: "#9e5c00", textAlign: "center", letterSpacing: "0.06em",
             }}>Gov&apos;t &amp; Commercial</div>
           </SideSection>
@@ -494,7 +499,7 @@ function CapabilityDocument() {
                     width: "5px", height: "5px", borderRadius: "1px", flexShrink: 0,
                     background: "linear-gradient(135deg, #0a67c7, #003E6A)",
                   }} />
-                  <span style={{ fontSize: "8px", color: "#1a2d42" }}>{cert}</span>
+                  <span style={{ fontSize: "9.5px", color: "#1a2d42" }}>{cert}</span>
                 </div>
               ))}
             </div>
@@ -511,11 +516,11 @@ function CapabilityDocument() {
                   padding: primary ? "1.5px 4px" : "0",
                 }}>
                   <span style={{
-                    fontFamily: "monospace", fontSize: "7.5px",
+                    fontFamily: "monospace", fontSize: "9px",
                     color: primary ? "#003E6A" : "#0a67c7",
                     fontWeight: primary ? 800 : 500, minWidth: "38px", letterSpacing: "0.02em",
                   }}>{code}{primary && " ★"}</span>
-                  <span style={{ fontSize: "7px", color: "#4a6383" }}>{label}</span>
+                  <span style={{ fontSize: "8px", color: "#4a6383" }}>{label}</span>
                 </div>
               ))}
             </div>
@@ -529,11 +534,11 @@ function CapabilityDocument() {
               padding: "7px 8px",
               boxShadow: "0 1px 5px rgba(10,103,199,0.07), inset 0 1px 0 rgba(255,255,255,0.9)",
             }}>
-              <div style={{ fontWeight: 800, fontSize: "9.5px", color: "#003E6A", marginBottom: "1px" }}>Eric Elewokor</div>
-              <div style={{ fontSize: "7.5px", fontWeight: 600, color: "#0a67c7", marginBottom: "5px", letterSpacing: "0.03em" }}>
+              <div style={{ fontWeight: 800, fontSize: "11px", color: "#003E6A", marginBottom: "1px" }}>Eric Elewokor</div>
+              <div style={{ fontSize: "9px", fontWeight: 600, color: "#0a67c7", marginBottom: "5px", letterSpacing: "0.03em" }}>
                 Chief Executive Officer
               </div>
-              <div style={{ fontSize: "7.5px", lineHeight: 1.85, color: "#4a6383" }}>
+              <div style={{ fontSize: "9px", lineHeight: 1.85, color: "#4a6383" }}>
                 937-776-8924 (mobile)<br />eric@voltican.com
               </div>
             </div>
@@ -549,7 +554,7 @@ function CapabilityDocument() {
                     background: "linear-gradient(135deg, #0a67c7, #60b4ff)",
                     boxShadow: "0 0 4px rgba(10,103,199,0.4)",
                   }} />
-                  <span style={{ fontSize: "7.5px", color: "#1a2d42", fontWeight: 500 }}>{p}</span>
+                  <span style={{ fontSize: "9px", color: "#1a2d42", fontWeight: 500 }}>{p}</span>
                 </div>
               ))}
             </div>
@@ -572,7 +577,7 @@ function CapabilityDocument() {
             borderLeft: "4px solid #0a67c7",
             borderRadius: "0 7px 7px 0",
             padding: "9px 12px",
-            fontSize: "8.5px", lineHeight: 1.7, color: "#1a2d42",
+            fontSize: "10px", lineHeight: 1.7, color: "#1a2d42",
             boxShadow: "inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 10px rgba(10,103,199,0.07)",
           }}>
             <strong style={{ color: "#003E6A" }}>Voltican</strong> is a minority-owned IT solutions and AI modernization firm with{" "}
@@ -609,7 +614,7 @@ function CapabilityDocument() {
                       {col.icon}
                     </span>
                     <span style={{
-                      fontSize: "7.5px", fontWeight: 800, color: "#fff",
+                      fontSize: "9px", fontWeight: 800, color: "#fff",
                       textTransform: "uppercase", letterSpacing: "0.05em", lineHeight: 1.3,
                     }}>{col.title}</span>
                   </div>
@@ -620,11 +625,11 @@ function CapabilityDocument() {
                   }}>
                     {col.items.map((item) => (
                       <li key={item} style={{
-                        fontSize: "7.8px", display: "flex", alignItems: "flex-start", gap: "4px", lineHeight: 1.55,
+                        fontSize: "9px", display: "flex", alignItems: "flex-start", gap: "4px", lineHeight: 1.55,
                       }}>
                         <span style={{
                           color: col.accent ? "#e67e00" : "#0a67c7",
-                          fontWeight: 800, fontSize: "9px", lineHeight: "1.3", flexShrink: 0,
+                          fontWeight: 800, fontSize: "11px", lineHeight: "1.3", flexShrink: 0,
                         }}>›</span>
                         {item}
                       </li>
@@ -649,7 +654,7 @@ function CapabilityDocument() {
                   {["Client / Agency", "Project Type", "Technology Stack"].map((h) => (
                     <th key={h} style={{
                       padding: "5px 9px", textAlign: "left",
-                      fontSize: "7px", fontWeight: 700,
+                      fontSize: "8.5px", fontWeight: 700,
                       letterSpacing: "0.12em", textTransform: "uppercase",
                       color: "rgba(255,255,255,0.9)",
                     }}>{h}</th>
@@ -679,7 +684,7 @@ function CapabilityDocument() {
                 <span key={m} style={{
                   border: `1px solid ${i === 0 ? "#e67e00" : "#0a67c7"}`,
                   borderRadius: "20px", padding: "3px 12px",
-                  fontSize: "8px", fontWeight: 600,
+                  fontSize: "9.5px", fontWeight: 600,
                   color: i === 0 ? "#9e5c00" : "#0a67c7",
                   background: i === 0 ? "rgba(255,152,0,0.07)" : "rgba(10,103,199,0.05)",
                   letterSpacing: "0.03em",
@@ -716,16 +721,16 @@ function CapabilityDocument() {
                     lineHeight: 1, fontFamily: "'Raleway', sans-serif",
                     textShadow: `0 2px 10px ${glow}`,
                   }}>{stat}</div>
-                  <div style={{ fontSize: "7px", color: "#4a6383", lineHeight: 1.4, whiteSpace: "pre-line" }}>{label}</div>
+                  <div style={{ fontSize: "8.5px", color: "#4a6383", lineHeight: 1.4, whiteSpace: "pre-line" }}>{label}</div>
                 </div>
               ))}
             </div>
           </div>
 
           {/* WHY CHOOSE VOLTICAN */}
-          <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+          <div>
             <SectionLabel>Why Choose Voltican</SectionLabel>
-            <div style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5px" }}>
               {[
                 {
                   icon: <svg viewBox="0 0 18 18" fill="none" style={{ width: 13, height: 13 }}><circle cx="9" cy="9" r="7.5" stroke="#0a67c7" strokeWidth="1.3"/><path d="M5 9l3 3 5-5" stroke="#0a67c7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
@@ -762,11 +767,11 @@ function CapabilityDocument() {
                   <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                     {icon}
                     <span style={{
-                      fontSize: "7.8px", fontWeight: 800, color: "#1a2d42",
+                      fontSize: "9px", fontWeight: 800, color: "#1a2d42",
                       textTransform: "uppercase", letterSpacing: "0.05em",
                     }}>{title}</span>
                   </div>
-                  <div style={{ fontSize: "7.8px", color: "#4a6383", lineHeight: 1.6 }}>{body}</div>
+                  <div style={{ fontSize: "9px", color: "#4a6383", lineHeight: 1.6 }}>{body}</div>
                 </div>
               ))}
             </div>
@@ -788,7 +793,7 @@ function CapabilityDocument() {
         }} />
         <div style={{ position: "relative", zIndex: 1 }}>
           <div style={{
-            fontSize: "6px", fontWeight: 800, letterSpacing: "0.22em",
+            fontSize: "7.5px", fontWeight: 800, letterSpacing: "0.22em",
             textTransform: "uppercase", color: "#7badd4",
             marginBottom: "5px", display: "flex", alignItems: "center", gap: "6px",
           }}>
@@ -801,7 +806,7 @@ function CapabilityDocument() {
                 background: "rgba(255,152,0,0.09)",
                 border: "1px solid rgba(255,152,0,0.26)",
                 borderRadius: "4px", padding: "2px 8px",
-                fontSize: "7px", color: "rgba(255,255,255,0.82)", fontWeight: 500,
+                fontSize: "8.5px", color: "rgba(255,255,255,0.82)", fontWeight: 500,
               }}>{p}</span>
             ))}
           </div>
@@ -818,10 +823,10 @@ function CapabilityDocument() {
       }}>
         <Image src="/logo-white.png" alt="Voltican" width={100} height={30}
           style={{ height: "24px", width: "auto", objectFit: "contain" }} />
-        <div style={{ fontSize: "7px", color: "rgba(255,255,255,0.4)", textAlign: "center", letterSpacing: "0.04em" }}>
+        <div style={{ fontSize: "8px", color: "rgba(255,255,255,0.4)", textAlign: "center", letterSpacing: "0.04em" }}>
           713-369-0997 &nbsp;·&nbsp; 281-201-9859 (fax) &nbsp;·&nbsp; www.voltican.com &nbsp;·&nbsp; 6671 Southwest Freeway, Houston, TX 77407
         </div>
-        <div style={{ fontSize: "6.5px", color: "rgba(255,255,255,0.32)", textAlign: "right", lineHeight: 1.65 }}>
+        <div style={{ fontSize: "7.5px", color: "rgba(255,255,255,0.32)", textAlign: "right", lineHeight: 1.65 }}>
           Confidential &amp; Proprietary<br />© 2026 Voltican Inc.
         </div>
       </footer>
