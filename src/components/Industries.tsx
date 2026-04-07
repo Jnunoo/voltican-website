@@ -135,21 +135,6 @@ export default function Industries() {
   return (
     <section id="industries" ref={sectionRef} className="relative py-20 lg:py-28 bg-white overflow-hidden">
 
-      {/* Ghost watermark */}
-      <div
-        aria-hidden="true"
-        className="ghost-text"
-        style={{
-          top: '50%',
-          right: '-1%',
-          transform: 'translateY(-50%)',
-          fontSize: 'clamp(80px, 14vw, 160px)',
-          color: 'rgba(0, 62, 106, 0.09)',
-          fontFamily: 'var(--font-heading, Inter, sans-serif)',
-        }}
-      >
-        INDUSTRIES
-      </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Header row */}

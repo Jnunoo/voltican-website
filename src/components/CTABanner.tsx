@@ -21,22 +21,6 @@ export default function CTABanner() {
       id="ai-assessment"
       className="py-20 lg:py-28 bg-gradient-to-br from-brand-blue to-brand-navy relative overflow-hidden"
     >
-      {/* Ghost watermark */}
-      <div
-        aria-hidden="true"
-        className="ghost-text"
-        style={{
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          fontSize: 'clamp(60px, 12vw, 140px)',
-          color: 'rgba(255,255,255,0.08)',
-          fontFamily: 'var(--font-heading, Inter, sans-serif)',
-          textAlign: 'center',
-        }}
-      >
-        START TODAY
-      </div>
 
       {/* Decorative blobs */}
       <div className="absolute top-[-4rem] left-[-4rem] w-64 h-64 rounded-full bg-brand-orange/10" />

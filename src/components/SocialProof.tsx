@@ -71,20 +71,6 @@ export default function SocialProof() {
   return (
     <section className="relative py-20 lg:py-28 bg-white overflow-hidden">
 
-      {/* Ghost watermark */}
-      <div
-        aria-hidden="true"
-        className="ghost-text"
-        style={{
-          top: '40%',
-          left: '-2%',
-          fontSize: 'clamp(70px, 12vw, 150px)',
-          color: 'rgba(10, 103, 199, 0.09)',
-          fontFamily: 'var(--font-heading, Inter, sans-serif)',
-        }}
-      >
-        IMPACT
-      </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
 

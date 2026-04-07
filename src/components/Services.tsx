@@ -53,22 +53,6 @@ export default function Services() {
   return (
     <section id="services" className="relative min-h-screen py-20 lg:py-28 bg-white flex flex-col justify-center overflow-hidden">
 
-      {/* Ghost watermark — Ajax-Ed style */}
-      <div
-        className="ghost-text select-none pointer-events-none"
-        aria-hidden="true"
-        style={{
-          top: '50%',
-          left: '-2%',
-          transform: 'translateY(-50%)',
-          fontSize: 'clamp(100px, 18vw, 200px)',
-          color: 'rgba(10, 103, 199, 0.09)',
-          fontFamily: 'var(--font-heading, Inter, sans-serif)',
-          zIndex: 0,
-        }}
-      >
-        SERVICES
-      </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Section header — slide up separately */}
