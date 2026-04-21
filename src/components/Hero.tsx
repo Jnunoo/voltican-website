@@ -4,9 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Zap, Globe, ArrowRight } from "lucide-react";
 import Image from "next/image";
-import ShaderBackground from "@/components/ui/shader-background";
 import Link from "next/link";
-import HeroImageSwitcher, { useHeroImage } from "@/components/HeroImageSwitcher";
 
 const valueProps = [
   { icon: CheckCircle, label: "Enterprise-grade AI expertise" },
@@ -14,52 +12,27 @@ const valueProps = [
   { icon: Globe, label: "Global delivery, local accountability" },
 ];
 
-export default function Hero() {
-  const { active, select } = useHeroImage();
+/** Cinematic video hero background — administered via CRM in the future */
+const HERO_VIDEO_SRC = "/videos/Image_to_Cinematic_Video.mp4";
 
+export default function Hero() {
   return (
     <section className="relative h-screen w-full overflow-hidden flex flex-col justify-between">
-      {/* WebGL Shader Background — always present */}
-      <ShaderBackground />
-
-      {/* ── Hero Background Image/Video Layer ── */}
-      {active.src && (
-        <div className="absolute inset-0 z-[5] pointer-events-none transition-opacity duration-700">
-          {active.isVideo ? (
-            <video
-              key={active.id}
-              src={active.src}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700"
-              style={{
-                opacity: active.opacity,
-                mixBlendMode: active.blend as React.CSSProperties["mixBlendMode"],
-              }}
-              aria-hidden="true"
-            />
-          ) : (
-            <Image
-              key={active.id}
-              src={active.src}
-              alt=""
-              fill
-              className="object-cover object-center transition-opacity duration-700"
-              style={{
-                opacity: active.opacity,
-                mixBlendMode: active.blend as React.CSSProperties["mixBlendMode"],
-              }}
-              priority
-              aria-hidden="true"
-            />
-          )}
-          {/* Edge vignette */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#001f3d]/70 via-transparent to-[#001f3d]/50" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#001f3d]/50 via-transparent to-transparent" />
-        </div>
-      )}
+      {/* ── Cinematic Video Background ── */}
+      <div className="absolute inset-0 z-[5] pointer-events-none">
+        <video
+          src={HERO_VIDEO_SRC}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          aria-hidden="true"
+        />
+        {/* Edge vignette */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#001f3d]/70 via-transparent to-[#001f3d]/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#001f3d]/50 via-transparent to-transparent" />
+      </div>
 
       {/* Gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent via-40% to-black/50 pointer-events-none z-10" />
@@ -134,7 +107,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Lower bar — value props left, switcher + article right */}
+        {/* Lower bar — value props left, featured article right */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -151,11 +124,8 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* Right side: switcher + featured article stacked */}
+          {/* Right side: featured article card */}
           <div className="flex flex-col items-end gap-3">
-            {/* ── Background Image Switcher ── */}
-            <HeroImageSwitcher onSelect={select} current={active} />
-
             {/* Featured article card */}
             <Link
               href="/case-studies/genai-erp-transformation"
