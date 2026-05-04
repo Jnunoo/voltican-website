@@ -7,6 +7,7 @@ const cn = (...classes: (string | undefined | null | false)[]) => {
 export interface GalleryItem {
   common: string;
   binomial: string;
+  href?: string;
   photo: {
     url: string;
     text: string;
@@ -109,7 +110,13 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
                   transition: 'opacity 0.3s linear',
                 }}
               >
-                <div className="relative w-full h-full rounded-2xl shadow-2xl overflow-hidden group border border-white/10 backdrop-blur-lg">
+                <a
+                  href={item.href ?? '#'}
+                  className="relative w-full h-full rounded-2xl shadow-2xl overflow-hidden group border border-white/10 backdrop-blur-lg block cursor-pointer"
+                  style={{ textDecoration: 'none' }}
+                  tabIndex={item.href ? 0 : -1}
+                  onClick={item.href ? undefined : (e) => e.preventDefault()}
+                >
                   <img
                     src={item.photo.url}
                     alt={item.photo.text}
@@ -124,7 +131,7 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
                     </em>
                     <p className="text-xs mt-2 opacity-60">{item.photo.by}</p>
                   </div>
-                </div>
+                </a>
               </div>
             );
           })}

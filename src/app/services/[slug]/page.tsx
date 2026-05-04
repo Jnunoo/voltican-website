@@ -53,7 +53,7 @@ export default async function ServiceDetailPage({
           <div>
             {/* Breadcrumb */}
             <Link
-              href="/#services"
+              href="/services"
               className="inline-flex items-center gap-2 text-brand-ice/50 hover:text-brand-ice text-sm mb-8 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -72,7 +72,7 @@ export default async function ServiceDetailPage({
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="#contact"
+                href="/contact"
                 className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-brand-orange text-white font-semibold text-sm hover:bg-brand-orange/90 transition-colors"
               >
                 Start a conversation
@@ -221,7 +221,7 @@ export default async function ServiceDetailPage({
               <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
             <Link
-              href="/#services"
+              href="/services"
               className="inline-flex items-center justify-center h-12 px-8 rounded-full border border-white/20 text-white text-sm font-semibold hover:bg-white/10 transition-colors"
             >
               ← All Services

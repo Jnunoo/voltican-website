@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { CircularGallery, type GalleryItem } from '@/components/ui/circular-gallery';
 
@@ -7,6 +8,7 @@ const aiServiceItems: GalleryItem[] = [
   {
     common: 'AI Strategy & Consulting',
     binomial: 'Roadmaps · Governance · Readiness',
+    href: '/contact',
     photo: {
       url: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=900&auto=format&fit=crop&q=80',
       text: 'Abstract AI neural network visualization',
@@ -17,6 +19,7 @@ const aiServiceItems: GalleryItem[] = [
   {
     common: 'Generative AI Implementation',
     binomial: 'LLMs · RAG · Enterprise Integration',
+    href: '/contact',
     photo: {
       url: 'https://images.unsplash.com/photo-1655720031554-a929595ffad7?w=900&auto=format&fit=crop&q=80',
       text: 'Generative AI interface and chat system',
@@ -27,6 +30,7 @@ const aiServiceItems: GalleryItem[] = [
   {
     common: 'Intelligent Process Automation',
     binomial: 'Cognitive RPA · Document AI · Vision',
+    href: '/services/automation-rpa',
     photo: {
       url: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=900&auto=format&fit=crop&q=80',
       text: 'Robotic automation and AI processing',
@@ -37,6 +41,7 @@ const aiServiceItems: GalleryItem[] = [
   {
     common: 'AI-Powered Data Analytics',
     binomial: 'NL Querying · Forecasting · Agentic',
+    href: '/services/data-analytics',
     photo: {
       url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&auto=format&fit=crop&q=80',
       text: 'Data analytics dashboard and visualization',
@@ -47,6 +52,7 @@ const aiServiceItems: GalleryItem[] = [
   {
     common: 'AI Governance & Responsible AI',
     binomial: 'Ethics · Compliance · Risk',
+    href: '/contact',
     photo: {
       url: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=900&auto=format&fit=crop&q=80',
       text: 'Security and governance framework visualization',
@@ -57,6 +63,7 @@ const aiServiceItems: GalleryItem[] = [
   {
     common: 'MLOps & AI Infrastructure',
     binomial: 'MLOps · Platforms · Scaling',
+    href: '/contact',
     photo: {
       url: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=900&auto=format&fit=crop&q=80',
       text: 'Cloud infrastructure and ML platform',
@@ -130,8 +137,9 @@ export default function AIServices() {
         <div className="relative z-10 px-6 pb-2">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {aiServiceItems.map((item) => (
-              <div
+              <Link
                 key={item.common}
+                href={item.href ?? '/contact'}
                 className="group rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300"
               >
                 <div className="relative h-40 w-full overflow-hidden">
@@ -154,7 +162,7 @@ export default function AIServices() {
                     {item.photo.by}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -163,7 +171,7 @@ export default function AIServices() {
       {/* Bottom CTA */}
       <div className="relative z-10 flex justify-center pt-5 pb-2 px-6">
         <a
-          href="#ai-assessment"
+          href="/#ai-assessment"
           className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-brand-orange text-white font-semibold text-sm hover:bg-brand-orange/90 transition-colors w-full sm:w-auto max-w-xs sm:max-w-none"
         >
           Start with a Free AI Assessment

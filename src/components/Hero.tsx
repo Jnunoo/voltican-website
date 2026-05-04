@@ -94,11 +94,11 @@ export default function Hero() {
               asChild
               className="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold px-7 py-5 rounded-full text-sm shadow-lg shadow-brand-orange/25 transition-all duration-300 hover:-translate-y-0.5"
             >
-              <a href="#ai-assessment">Get started today</a>
+              <a href="/#ai-assessment">Get started today</a>
             </Button>
 
             <a
-              href="#services"
+              href="/services"
               className="text-white/65 hover:text-white text-sm font-medium flex items-center gap-2 transition-colors duration-200"
             >
               View our services
