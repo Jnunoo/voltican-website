@@ -180,7 +180,7 @@ export default async function CaseStudyDetail({ params }: Props) {
                 Book a free AI Readiness Assessment with our team.
               </p>
               <Link
-                href="/#ai-assessment"
+                href="/contact"
                 className="bg-white hover:bg-white/90 text-[#001f3d] text-xs font-bold px-5 py-2.5 rounded-full inline-block transition-all duration-200"
               >
                 Get a Free Assessment

@@ -171,7 +171,7 @@ export default function AIServices() {
       {/* Bottom CTA */}
       <div className="relative z-10 flex justify-center pt-5 pb-2 px-6">
         <a
-          href="/#ai-assessment"
+          href="/contact"
           className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-brand-orange text-white font-semibold text-sm hover:bg-brand-orange/90 transition-colors w-full sm:w-auto max-w-xs sm:max-w-none"
         >
           Start with a Free AI Assessment

@@ -244,7 +244,7 @@ export default function ContactPage() {
       <section className="py-16 bg-brand-navy text-center px-6">
         <p className="text-brand-ice/60 text-sm mb-4">Prefer to start with a free assessment?</p>
         <Link
-          href="/#ai-assessment"
+          href="/contact"
           className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold text-sm transition-colors"
         >
           Book Your Free AI Assessment

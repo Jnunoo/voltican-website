@@ -19,8 +19,11 @@ export default function PageTransition({ children }: { children: React.ReactNode
 
   useEffect(() => {
     keyRef.current = pathname;
-    // Scroll to top any time the route changes (covers Back btn navigation)
-    window.scrollTo({ top: 0 });
+    // Only scroll to top when there's no hash target — if there is one,
+    // let the browser handle scrolling to the anchor naturally.
+    if (!window.location.hash) {
+      window.scrollTo({ top: 0 });
+    }
   }, [pathname]);
 
   return <div key={keyRef.current} className="contents">{children}</div>;

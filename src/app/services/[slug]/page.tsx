@@ -214,7 +214,7 @@ export default async function ServiceDetailPage({
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/#ai-assessment"
+              href="/contact"
               className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-brand-orange text-white font-semibold text-sm hover:bg-brand-orange/90 transition-colors"
             >
               Book a Free Assessment

@@ -83,7 +83,7 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden lg:flex items-center gap-4">
           <Link
-            href="/#ai-assessment"
+            href="/contact"
             className="inline-flex items-center justify-center h-10 px-5 rounded-full text-sm font-semibold transition-all duration-300 bg-brand-orange hover:bg-brand-orange/90 text-white shadow-md shadow-brand-orange/25 hover:-translate-y-0.5"
           >
             Free AI Assessment
@@ -123,7 +123,7 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="/#ai-assessment"
+              href="/contact"
               onClick={() => setMobileOpen(false)}
               className="inline-flex items-center justify-center h-11 px-6 rounded-full bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold mt-2 transition-all"
             >

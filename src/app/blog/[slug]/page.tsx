@@ -155,7 +155,7 @@ export default async function BlogPostPage({ params }: Props) {
                 Get a free AI Readiness Assessment and a personalized roadmap.
               </p>
               <Link
-                href="/#ai-assessment"
+                href="/contact"
                 className="bg-brand-orange hover:bg-brand-orange/90 text-white text-xs font-semibold px-4 py-2.5 rounded-full inline-block transition-all"
               >
                 Book Assessment

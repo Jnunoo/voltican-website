@@ -111,7 +111,7 @@ export default function CaseStudiesPage() {
               <p className="text-white/55 text-sm">Book a free AI Readiness Assessment and discover what&apos;s possible.</p>
             </div>
             <Link
-              href="/#ai-assessment"
+              href="/contact"
               className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold px-8 py-3.5 rounded-full text-sm transition-all duration-200 whitespace-nowrap shadow-md shadow-brand-orange/20"
             >
               Get a Free Assessment

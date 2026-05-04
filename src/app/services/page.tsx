@@ -117,7 +117,7 @@ export default function ServicesPage() {
               </p>
             </div>
             <Link
-              href="/#ai-assessment"
+              href="/contact"
               className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold px-8 py-3.5 rounded-full text-sm transition-all duration-200 whitespace-nowrap shadow-md shadow-brand-orange/20 shrink-0"
             >
               Get a Free Assessment
