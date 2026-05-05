@@ -81,7 +81,13 @@ export default function Navbar() {
         </nav>
 
         {/* CTA */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3">
+          <a
+            href={process.env.NEXT_PUBLIC_CRM_PORTAL_URL ?? 'http://localhost:3001'}
+            className="inline-flex items-center justify-center h-10 px-5 rounded-full text-sm font-medium transition-all duration-300 border border-white/30 text-white/80 hover:text-white hover:border-white/60"
+          >
+            Sign In
+          </a>
           <Link
             href="/contact"
             className="inline-flex items-center justify-center h-10 px-5 rounded-full text-sm font-semibold transition-all duration-300 bg-brand-orange hover:bg-brand-orange/90 text-white shadow-md shadow-brand-orange/25 hover:-translate-y-0.5"
@@ -122,6 +128,13 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <a
+              href={process.env.NEXT_PUBLIC_CRM_PORTAL_URL ?? 'http://localhost:3001'}
+              onClick={() => setMobileOpen(false)}
+              className="inline-flex items-center justify-center h-11 px-6 rounded-full border border-white/30 text-white/80 hover:text-white font-medium transition-all"
+            >
+              Sign In
+            </a>
             <Link
               href="/contact"
               onClick={() => setMobileOpen(false)}

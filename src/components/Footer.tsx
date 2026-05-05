@@ -23,6 +23,7 @@ const footerLinks = {
     { label: "Careers", href: "/careers" },
     { label: "Government", href: "#" },
     { label: "Contact", href: "/contact" },
+    { label: "Sign In", href: process.env.NEXT_PUBLIC_CRM_PORTAL_URL ?? 'http://localhost:3001' },
   ],
 };
 
