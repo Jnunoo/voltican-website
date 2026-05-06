@@ -37,45 +37,49 @@ function mapToServiceDetail(row: DbService): ServiceDetail {
   }
 }
 
-export const getPublishedServices = unstable_cache(
-  async (): Promise<ServiceDetail[]> => {
-    try {
-      const { data, error } = await getSupabase()
-        .from('landing_services')
-        .select('*')
-        .eq('is_published', true)
-        .eq('show_on_landing', true)
-        .order('display_order', { ascending: true })
+export async function getPublishedServices(): Promise<ServiceDetail[]> {
+  return unstable_cache(
+    async () => {
+      try {
+        const { data, error } = await getSupabase()
+          .from('landing_services')
+          .select('*')
+          .eq('is_published', true)
+          .eq('show_on_landing', true)
+          .order('display_order', { ascending: true })
 
-      if (error || !data || data.length === 0) return fallbackServices
-      return data.map(mapToServiceDetail)
-    } catch {
-      return fallbackServices
-    }
-  },
-  ['cms-services-published'],
-  { revalidate: 60, tags: ['cms:services'] }
-)
+        if (error || !data || data.length === 0) return fallbackServices
+        return data.map(mapToServiceDetail)
+      } catch {
+        return fallbackServices
+      }
+    },
+    ['cms-services-published'],
+    { revalidate: 60, tags: ['cms:services'] }
+  )()
+}
 
-export const getServiceBySlugCms = unstable_cache(
-  async (slug: string): Promise<ServiceDetail | undefined> => {
-    try {
-      const { data, error } = await getSupabase()
-        .from('landing_services')
-        .select('*')
-        .eq('slug', slug)
-        .eq('is_published', true)
-        .single()
+export async function getServiceBySlugCms(slug: string): Promise<ServiceDetail | undefined> {
+  return unstable_cache(
+    async () => {
+      try {
+        const { data, error } = await getSupabase()
+          .from('landing_services')
+          .select('*')
+          .eq('slug', slug)
+          .eq('is_published', true)
+          .single()
 
-      if (error || !data) return fallbackServices.find(s => s.slug === slug)
-      return mapToServiceDetail(data)
-    } catch {
-      return fallbackServices.find(s => s.slug === slug)
-    }
-  },
-  ['cms-service-slug'],
-  { revalidate: 60, tags: ['cms:services'] }
-)
+        if (error || !data) return fallbackServices.find(s => s.slug === slug)
+        return mapToServiceDetail(data)
+      } catch {
+        return fallbackServices.find(s => s.slug === slug)
+      }
+    },
+    ['cms-service-slug', slug],
+    { revalidate: 60, tags: ['cms:services'] }
+  )()
+}
 
 export async function getAllServiceSlugs(): Promise<string[]> {
   try {

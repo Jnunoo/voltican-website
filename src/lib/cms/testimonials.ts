@@ -41,21 +41,23 @@ const fallback: CmsTestimonial[] = [
   },
 ]
 
-export const getPublishedTestimonials = unstable_cache(
-  async (): Promise<CmsTestimonial[]> => {
-    try {
-      const { data, error } = await getSupabase()
-        .from('testimonials')
-        .select('id, author_name, author_role, company, quote, rating, display_order')
-        .eq('is_published', true)
-        .order('display_order', { ascending: true })
+export async function getPublishedTestimonials(): Promise<CmsTestimonial[]> {
+  return unstable_cache(
+    async () => {
+      try {
+        const { data, error } = await getSupabase()
+          .from('testimonials')
+          .select('id, author_name, author_role, company, quote, rating, display_order')
+          .eq('is_published', true)
+          .order('display_order', { ascending: true })
 
-      if (error || !data || data.length === 0) return fallback
-      return data
-    } catch {
-      return fallback
-    }
-  },
-  ['cms-testimonials-published'],
-  { revalidate: 60, tags: ['cms:testimonials'] }
-)
+        if (error || !data || data.length === 0) return fallback
+        return data
+      } catch {
+        return fallback
+      }
+    },
+    ['cms-testimonials-published'],
+    { revalidate: 60, tags: ['cms:testimonials'] }
+  )()
+}
