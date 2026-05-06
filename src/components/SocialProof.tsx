@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { TestimonialCard } from "@/components/ui/testimonial-cards";
+import type { CmsTestimonial } from "@/lib/cms/testimonials";
 
 const metrics = [
   { value: "95%", label: "Client Retention Rate" },
@@ -9,7 +10,7 @@ const metrics = [
   { value: "40%", label: "Avg. Cost Reduction" },
 ];
 
-const testimonials = [
+const defaultTestimonials = [
   {
     id: 11,
     testimonial:
@@ -33,7 +34,14 @@ const testimonials = [
   },
 ];
 
-export default function SocialProof() {
+interface Props {
+  testimonials?: CmsTestimonial[]
+}
+
+export default function SocialProof({ testimonials: dbTestimonials }: Props) {
+  const testimonials = dbTestimonials && dbTestimonials.length > 0
+    ? dbTestimonials.map((t, i) => ({ id: i + 1, testimonial: t.quote, author: t.author_name, role: t.author_role || t.company }))
+    : defaultTestimonials;
   const [positions, setPositions] = useState<
     ("front" | "middle" | "back")[]
   >(["front", "middle", "back"]);

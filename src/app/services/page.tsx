@@ -1,4 +1,4 @@
-import { services } from "@/data/services";
+import { getPublishedServices } from "@/lib/cms/services";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Metadata } from "next";
@@ -19,7 +19,8 @@ const cardColors: Record<string, string> = {
   "saas-erp":          "#0a3d5c",
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await getPublishedServices();
   return (
     <main className="min-h-screen bg-white">
 

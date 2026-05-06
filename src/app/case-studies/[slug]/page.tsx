@@ -1,4 +1,4 @@
-import { caseStudies } from "@/data/case-studies";
+import { getPublishedCaseStudies, getCaseStudyBySlug, getAllCaseStudySlugs } from "@/lib/cms/case-studies";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -11,7 +11,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const cs = caseStudies.find((c) => c.slug === slug);
+  const cs = await getCaseStudyBySlug(slug);
   if (!cs) return { title: "Case Study Not Found" };
   return {
     title: `${cs.title} | Voltican Case Study`,
@@ -19,17 +19,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export function generateStaticParams() {
-  return caseStudies.map((cs) => ({ slug: cs.slug }));
+export async function generateStaticParams() {
+  return getAllCaseStudySlugs().map((slug) => ({ slug }));
 }
 
 export default async function CaseStudyDetail({ params }: Props) {
   const { slug } = await params;
-  const cs = caseStudies.find((c) => c.slug === slug);
+  const cs = await getCaseStudyBySlug(slug);
   if (!cs) notFound();
 
-  const currentIndex = caseStudies.indexOf(cs);
-  const nextCase = caseStudies[(currentIndex + 1) % caseStudies.length];
+  const allCaseStudies = await getPublishedCaseStudies();
+  const currentIndex = allCaseStudies.findIndex(c => c.slug === slug);
+  const nextCase = allCaseStudies[(currentIndex + 1) % allCaseStudies.length];
 
   return (
     <main className="min-h-screen bg-white">

@@ -1,4 +1,4 @@
-import { blogPosts } from "@/data/blog-posts";
+import { getPublishedBlogPosts } from "@/lib/cms/blog-posts";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
@@ -17,7 +17,8 @@ const categoryColors: Record<string, string> = {
   "AI Tools":              "#0a3d5c",
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const blogPosts = await getPublishedBlogPosts();
   const [featured, ...rest] = blogPosts;
 
   return (

@@ -1,4 +1,4 @@
-import { blogPosts } from "@/data/blog-posts";
+import { getPublishedBlogPosts, getBlogPostBySlugCms, getAllBlogSlugs } from "@/lib/cms/blog-posts";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -10,7 +10,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = await getBlogPostBySlugCms(slug);
   if (!post) return { title: "Post Not Found" };
   return {
     title: `${post.title} | Voltican Insights`,
@@ -18,8 +18,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export function generateStaticParams() {
-  return blogPosts.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  const slugs = await getAllBlogSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 const categoryColors: Record<string, string> = {
@@ -31,11 +32,12 @@ const categoryColors: Record<string, string> = {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = await getBlogPostBySlugCms(slug);
   if (!post) notFound();
 
-  const currentIndex = blogPosts.indexOf(post);
-  const relatedPosts = blogPosts.filter((_, i) => i !== currentIndex).slice(0, 2);
+  const allPosts = await getPublishedBlogPosts();
+  const currentIndex = allPosts.findIndex(p => p.slug === slug);
+  const relatedPosts = allPosts.filter((_, i) => i !== currentIndex).slice(0, 2);
 
   // Simple markdown-ish renderer: ## becomes h2, \n\n becomes paragraphs
   const renderContent = (content: string) => {

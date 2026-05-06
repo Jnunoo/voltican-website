@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation';
-import { getServiceBySlug, services } from '@/data/services';
+import { getServiceBySlugCms, getAllServiceSlugs } from '@/lib/cms/services';
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle, ArrowRight } from 'lucide-react';
 
-// Generate static params for all 6 service slugs
 export async function generateStaticParams() {
-  return services.map((s) => ({ slug: s.slug }));
+  const slugs = await getAllServiceSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 // Dynamic page title / og metadata
@@ -15,7 +15,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const service = getServiceBySlug(slug);
+  const service = await getServiceBySlugCms(slug);
   if (!service) return { title: 'Service Not Found | Voltican' };
   return {
     title: `${service.title} | Voltican`,
@@ -34,7 +34,7 @@ export default async function ServiceDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const service = getServiceBySlug(slug);
+  const service = await getServiceBySlugCms(slug);
   if (!service) notFound();
 
   return (

@@ -1,4 +1,4 @@
-import { caseStudies } from "@/data/case-studies";
+import { getPublishedCaseStudies } from "@/lib/cms/case-studies";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
@@ -10,7 +10,8 @@ export const metadata: Metadata = {
     "Explore how Voltican has delivered measurable AI transformation outcomes for Fortune 500 firms, healthcare networks, and mid-market manufacturers.",
 };
 
-export default function CaseStudiesPage() {
+export default async function CaseStudiesPage() {
+  const caseStudies = await getPublishedCaseStudies();
   return (
     <main className="min-h-screen bg-white">
       {/* Page header — white background, navy text */}
