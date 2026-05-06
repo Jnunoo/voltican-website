@@ -1,4 +1,4 @@
-import { unstable_cache } from 'next/cache'
+import { cacheTag, cacheLife } from 'next/cache'
 import { getSupabase } from '@/lib/supabase'
 
 export interface CmsTestimonial {
@@ -42,22 +42,19 @@ const fallback: CmsTestimonial[] = [
 ]
 
 export async function getPublishedTestimonials(): Promise<CmsTestimonial[]> {
-  return unstable_cache(
-    async () => {
-      try {
-        const { data, error } = await getSupabase()
-          .from('testimonials')
-          .select('id, author_name, author_role, company, quote, rating, display_order')
-          .eq('is_published', true)
-          .order('display_order', { ascending: true })
+  'use cache'
+  cacheTag('cms:testimonials')
+  cacheLife({ revalidate: 60, expire: 600 })
+  try {
+    const { data, error } = await getSupabase()
+      .from('testimonials')
+      .select('id, author_name, author_role, company, quote, rating, display_order')
+      .eq('is_published', true)
+      .order('display_order', { ascending: true })
 
-        if (error || !data || data.length === 0) return fallback
-        return data
-      } catch {
-        return fallback
-      }
-    },
-    ['cms-testimonials-published'],
-    { revalidate: 60, tags: ['cms:testimonials'] }
-  )()
+    if (error || !data || data.length === 0) return fallback
+    return data
+  } catch {
+    return fallback
+  }
 }

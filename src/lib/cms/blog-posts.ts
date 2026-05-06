@@ -1,4 +1,4 @@
-import { unstable_cache } from 'next/cache'
+import { cacheTag, cacheLife } from 'next/cache'
 import { getSupabase } from '@/lib/supabase'
 import { blogPosts as fallbackPosts, type BlogPost } from '@/data/blog-posts'
 
@@ -41,46 +41,40 @@ function mapToWebsitePost(row: DbBlogPost): BlogPost {
 }
 
 export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
-  return unstable_cache(
-    async () => {
-      try {
-        const { data, error } = await getSupabase()
-          .from('blog_posts')
-          .select('*')
-          .eq('is_published', true)
-          .order('published_at', { ascending: false })
+  'use cache'
+  cacheTag('cms:blog')
+  cacheLife({ revalidate: 60, expire: 600 })
+  try {
+    const { data, error } = await getSupabase()
+      .from('blog_posts')
+      .select('*')
+      .eq('is_published', true)
+      .order('published_at', { ascending: false })
 
-        if (error || !data || data.length === 0) return fallbackPosts
-        return data.map(mapToWebsitePost)
-      } catch {
-        return fallbackPosts
-      }
-    },
-    ['cms-blog-published'],
-    { revalidate: 60, tags: ['cms:blog'] }
-  )()
+    if (error || !data || data.length === 0) return fallbackPosts
+    return data.map(mapToWebsitePost)
+  } catch {
+    return fallbackPosts
+  }
 }
 
 export async function getBlogPostBySlugCms(slug: string): Promise<BlogPost | undefined> {
-  return unstable_cache(
-    async () => {
-      try {
-        const { data, error } = await getSupabase()
-          .from('blog_posts')
-          .select('*')
-          .eq('slug', slug)
-          .eq('is_published', true)
-          .single()
+  'use cache'
+  cacheTag('cms:blog')
+  cacheLife({ revalidate: 60, expire: 600 })
+  try {
+    const { data, error } = await getSupabase()
+      .from('blog_posts')
+      .select('*')
+      .eq('slug', slug)
+      .eq('is_published', true)
+      .single()
 
-        if (error || !data) return fallbackPosts.find(p => p.slug === slug)
-        return mapToWebsitePost(data)
-      } catch {
-        return fallbackPosts.find(p => p.slug === slug)
-      }
-    },
-    ['cms-blog-slug', slug],
-    { revalidate: 60, tags: ['cms:blog'] }
-  )()
+    if (error || !data) return fallbackPosts.find(p => p.slug === slug)
+    return mapToWebsitePost(data)
+  } catch {
+    return fallbackPosts.find(p => p.slug === slug)
+  }
 }
 
 export async function getAllBlogSlugs(): Promise<string[]> {

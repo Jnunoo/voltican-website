@@ -22,6 +22,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'tag required' }, { status: 400 })
   }
 
-  revalidateTag(tag, 'default')
+  revalidateTag(tag, 'max')
   return NextResponse.json({ ok: true, tag })
 }

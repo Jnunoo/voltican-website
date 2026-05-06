@@ -92,7 +92,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-14 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-brand-ice/40">
-          <p>&copy; {new Date().getFullYear()} Voltican Inc. All rights reserved.</p>
+          <p>&copy; 2026 Voltican Inc. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy
