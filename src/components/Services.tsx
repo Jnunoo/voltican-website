@@ -51,12 +51,12 @@ export default function Services() {
   useStaggerReveal(gridRef as React.RefObject<HTMLElement | null>);
 
   return (
-    <section id="services" className="relative min-h-screen py-20 lg:py-28 bg-white flex flex-col justify-center overflow-hidden">
+    <section id="services" className="relative py-12 lg:py-16 bg-white overflow-hidden">
 
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
+      <div className="relative z-10 w-full px-12 sm:px-16 lg:px-16">
         {/* Section header — slide up separately */}
-        <div className="max-w-2xl mb-14">
+        <div className="max-w-2xl mb-8">
           <p className="text-slate-400 font-semibold text-xs tracking-[0.2em] uppercase mb-3">
             Our Services
           </p>
@@ -118,6 +118,17 @@ export default function Services() {
               </div>
             </Link>
           ))}
+        </div>
+
+        {/* Explore CTA — leaves the section for the dedicated services page */}
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-blue text-white font-semibold px-7 py-3 rounded-full text-sm transition-colors duration-200 shadow-md"
+          >
+            Explore all services
+            <span>→</span>
+          </Link>
         </div>
       </div>
     </section>

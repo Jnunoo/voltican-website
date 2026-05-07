@@ -30,7 +30,7 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer id="contact" className="bg-brand-navy text-white">
-      <div className="mx-auto max-w-7xl px-6 pt-16 pb-8">
+      <div className="w-full px-12 sm:px-16 lg:px-16 pt-16 pb-8">
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand column */}
           <div className="lg:col-span-2">

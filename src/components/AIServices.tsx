@@ -111,7 +111,7 @@ export default function AIServices() {
 
 
       {/* Section header */}
-      <div ref={headerRef} className="reveal relative z-10 text-center px-6 mb-4">
+      <div ref={headerRef} className="reveal w-full relative z-10 text-center px-12 sm:px-16 lg:px-16 mb-4">
         <p className="text-brand-orange font-semibold text-sm tracking-widest uppercase mb-3">
           AI Services
         </p>
@@ -135,7 +135,7 @@ export default function AIServices() {
       ) : (
         /* ─── MOBILE / TABLET (<1280px): stacked card grid ─── */
         <div className="relative z-10 px-6 pb-2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {aiServiceItems.map((item) => (
               <Link
                 key={item.common}

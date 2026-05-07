@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { TestimonialCard } from "@/components/ui/testimonial-cards";
 import type { CmsTestimonial } from "@/lib/cms/testimonials";
@@ -77,10 +78,10 @@ export default function SocialProof({ testimonials: dbTestimonials }: Props) {
   };
 
   return (
-    <section className="relative py-20 lg:py-28 bg-white overflow-hidden">
+    <section id="case-studies" className="relative py-20 lg:py-28 bg-white overflow-hidden">
 
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
+      <div className="relative z-10 w-full px-12 sm:px-16 lg:px-16">
 
         {/* Heading */}
         <div ref={headingRef} className="reveal text-center max-w-2xl mx-auto mb-16">
@@ -143,6 +144,17 @@ export default function SocialProof({ testimonials: dbTestimonials }: Props) {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Explore CTA — leaves the section for the dedicated page */}
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/case-studies"
+            className="inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-blue text-white font-semibold px-7 py-3 rounded-full text-sm transition-colors duration-200 shadow-md"
+          >
+            Explore all case studies
+            <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+          </Link>
         </div>
       </div>
     </section>

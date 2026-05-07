@@ -65,10 +65,10 @@ export default function About() {
   return (
     <section
       id="about"
-      className="min-h-screen py-20 lg:py-28 flex flex-col justify-center"
+      className="min-h-screen py-20 lg:py-28 2xl:py-32 flex flex-col justify-center"
       style={{ background: "linear-gradient(135deg, #0a67c7 0%, #003e6a 55%, #002d5a 100%)" }}
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="w-full px-12 sm:px-16 lg:px-16">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -91,7 +91,7 @@ export default function About() {
         </motion.div>
 
         {/* 3-column layout */}
-        <div className="flex flex-col lg:grid lg:grid-cols-[1fr_360px_1fr] gap-5 lg:items-start">
+        <div className="flex flex-col lg:grid lg:grid-cols-[1fr_260px_1fr] xl:grid-cols-[1fr_360px_1fr] 2xl:grid-cols-[1fr_440px_1fr] gap-5 lg:items-start">
           {/* Left cards */}
           <div className="flex flex-col gap-5">
             {leftCards.map((card, i) => (

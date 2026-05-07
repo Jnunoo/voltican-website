@@ -66,7 +66,7 @@ function PartnerMark({ partner }: { partner: Partner }) {
 export default function TechPartners() {
   return (
     <section className="py-14 overflow-hidden bg-white border-y border-slate-100">
-      <div className="mx-auto max-w-7xl px-6 mb-10">
+      <div className="w-full px-12 sm:px-16 lg:px-16 mb-10">
         <p className="text-center text-[11px] font-semibold text-slate-400 tracking-[0.2em] uppercase">
           Trusted Technology Partners
         </p>

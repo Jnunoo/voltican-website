@@ -271,7 +271,7 @@ export default function HowWeWork() {
   useReveal(gridRef as React.RefObject<HTMLElement | null>);
 
   return (
-    <section id="how-we-work" className="relative min-h-screen py-20 lg:py-28 bg-brand-navy flex flex-col justify-center overflow-hidden">
+    <section id="how-we-work" className="relative min-h-screen py-20 lg:py-28 2xl:py-32 bg-brand-navy flex flex-col justify-center overflow-hidden">
 
       {/* Keyframes for connector particle animation */}
       <style>{`
@@ -287,7 +287,7 @@ export default function HowWeWork() {
         }
       `}</style>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
+      <div className="relative z-10 w-full px-12 sm:px-16 lg:px-16">
         {/* Header */}
         <div ref={headingRef} className="reveal max-w-2xl mb-16">
           <p className="text-white/35 font-semibold text-xs tracking-[0.2em] uppercase mb-3">

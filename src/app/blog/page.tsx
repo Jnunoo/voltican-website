@@ -25,8 +25,8 @@ export default async function BlogPage() {
     <main className="min-h-screen bg-white">
 
       {/* ── Page header — white bg, navy text (matches Case Studies) ── */}
-      <section className="pt-28 pb-14 bg-white border-b border-slate-100">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl">
+      <section className="pt-24 pb-8 bg-white border-b border-slate-100">
+        <div className="w-full px-12 sm:px-16 lg:px-16">
           <div className="flex items-center gap-3 mb-5">
             <div className="h-px w-8 bg-slate-300" />
             <span className="text-slate-400 text-xs font-semibold tracking-[0.2em] uppercase">
@@ -44,8 +44,8 @@ export default async function BlogPage() {
       </section>
 
       {/* ── Card grid ── */}
-      <section className="bg-white py-14">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl">
+      <section className="bg-white py-10">
+        <div className="w-full px-12 sm:px-16 lg:px-16">
 
           {/* Featured post — full-width horizontal card */}
           <Link

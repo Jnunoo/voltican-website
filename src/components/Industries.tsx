@@ -136,7 +136,7 @@ export default function Industries() {
     <section id="industries" ref={sectionRef} className="relative py-20 lg:py-28 bg-white overflow-hidden">
 
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
+      <div className="relative z-10 w-full px-12 sm:px-16 lg:px-16">
         {/* Header row */}
         <div
           ref={headingRef}

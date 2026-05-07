@@ -41,7 +41,7 @@ export default function ContactPage() {
 
       {/* Contact grid */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
+        <div className="w-full px-12 sm:px-16 lg:px-16 grid lg:grid-cols-2 gap-16">
 
           {/* Left: contact details */}
           <div>

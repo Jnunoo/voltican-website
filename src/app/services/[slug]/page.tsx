@@ -48,7 +48,7 @@ export default async function ServiceDetailPage({
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-brand-blue/10 blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-brand-orange/5 blur-3xl pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+        <div className="relative w-full px-12 sm:px-16 lg:px-16 grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: copy */}
           <div>
             {/* Breadcrumb */}
@@ -100,7 +100,7 @@ export default async function ServiceDetailPage({
 
       {/* ─── Capabilities ─── */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="w-full px-12 sm:px-16 lg:px-16">
           <div className="max-w-2xl mb-14">
             <p className="text-brand-blue font-semibold text-xs tracking-[0.18em] uppercase mb-3">
               What We Deliver
@@ -137,7 +137,7 @@ export default async function ServiceDetailPage({
 
       {/* ─── Approach ─── */}
       <section className="py-20 lg:py-28 bg-brand-navy">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="w-full px-12 sm:px-16 lg:px-16">
           <div className="max-w-2xl mb-16">
             <p className="text-brand-orange font-semibold text-xs tracking-[0.18em] uppercase mb-3">
               Our Approach
@@ -173,7 +173,7 @@ export default async function ServiceDetailPage({
 
       {/* ─── Outcomes ─── */}
       <section className="py-20 lg:py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+        <div className="w-full px-12 sm:px-16 lg:px-16 grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <p className="text-brand-blue font-semibold text-xs tracking-[0.18em] uppercase mb-3">
               Proven Results

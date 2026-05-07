@@ -115,8 +115,8 @@ export default function CareersPage() {
     <main className="min-h-screen bg-white">
 
       {/* ── Page header ── */}
-      <section className="pt-28 pb-14 bg-white border-b border-slate-100">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl">
+      <section className="pt-24 pb-8 bg-white border-b border-slate-100">
+        <div className="w-full px-12 sm:px-16 lg:px-16">
           <div className="flex items-center gap-3 mb-5">
             <div className="h-px w-8 bg-slate-300" />
             <span className="text-slate-400 text-xs font-semibold tracking-[0.2em] uppercase">
@@ -141,7 +141,7 @@ export default function CareersPage() {
 
       {/* ── Why Voltican ── */}
       <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl">
+        <div className="w-full px-12 sm:px-16 lg:px-16">
           <div className="mb-12">
             <p className="text-[#0a67c7] font-semibold text-xs tracking-[0.18em] uppercase mb-3">
               Why Voltican
@@ -169,7 +169,7 @@ export default function CareersPage() {
 
       {/* ── Open Roles ── */}
       <section id="open-roles" className="py-20 bg-white">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl">
+        <div className="w-full px-12 sm:px-16 lg:px-16">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
             <div>
               <p className="text-[#0a67c7] font-semibold text-xs tracking-[0.18em] uppercase mb-3">
@@ -227,7 +227,7 @@ export default function CareersPage() {
 
       {/* ── Open application CTA ── */}
       <section className="py-20 bg-[#003e6a]">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl">
+        <div className="w-full px-12 sm:px-16 lg:px-16">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-white/50 text-xs tracking-[0.2em] uppercase font-semibold mb-4">
               Don&apos;t see your role?

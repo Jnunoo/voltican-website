@@ -15,8 +15,8 @@ export default async function CaseStudiesPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Page header — white background, navy text */}
-      <section className="pt-28 pb-14 bg-white border-b border-slate-100">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl">
+      <section className="pt-24 pb-8 bg-white border-b border-slate-100">
+        <div className="w-full px-12 sm:px-16 lg:px-16">
           <div className="flex items-center gap-3 mb-5">
             <div className="h-px w-8 bg-slate-300" />
             <span className="text-slate-400 text-xs font-semibold tracking-[0.2em] uppercase">Client Work</span>
@@ -32,8 +32,8 @@ export default async function CaseStudiesPage() {
       </section>
 
       {/* Card grid — white background, navy/dark cards */}
-      <section className="bg-white py-14">
-        <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-6xl">
+      <section className="bg-white py-10">
+        <div className="w-full px-12 sm:px-16 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {caseStudies.map((cs) => (
               <Link

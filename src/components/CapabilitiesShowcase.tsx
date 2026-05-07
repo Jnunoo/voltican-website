@@ -56,7 +56,7 @@ const images: ImageSet = {
 export default function CapabilitiesShowcase() {
   return (
     <section className="py-20 lg:py-28 bg-white">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="w-full px-12 sm:px-16 lg:px-16">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <p className="text-brand-blue font-semibold text-sm tracking-widest uppercase mb-3">
             Capabilities

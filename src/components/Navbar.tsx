@@ -5,12 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-const navLinks = [
-  { label: "About", href: "/#about" },
-  { label: "Services", href: "/services" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Insights", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+const navLinks: { label: string; href: string; match?: string }[] = [
+  { label: "About",        href: "/#about",        match: "/about" },
+  { label: "Services",     href: "/#services",     match: "/services" },
+  { label: "Case Studies", href: "/#case-studies", match: "/case-studies" },
+  { label: "Insights",     href: "/blog",          match: "/blog" },
+  { label: "Contact",      href: "/#contact",      match: "/contact" },
 ];
 
 export default function Navbar() {
@@ -43,7 +43,7 @@ export default function Navbar() {
         scrolled ? solidStyle : transparentStyle
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 flex items-center justify-between h-16">
+      <div className="w-full px-12 sm:px-16 lg:px-16 flex items-center justify-between h-16">
         {/* Logo — always white on dark background */}
         <Link href="/" className="flex items-center">
           <Image
@@ -59,11 +59,10 @@ export default function Navbar() {
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => {
+            const matchPath = link.match ?? link.href;
             const isActive =
-              link.href === pathname ||
-              (link.href.startsWith("/") &&
-                !link.href.includes("#") &&
-                pathname.startsWith(link.href));
+              matchPath !== "/" &&
+              (pathname === matchPath || pathname.startsWith(`${matchPath}/`));
             return (
               <Link
                 key={link.href}
