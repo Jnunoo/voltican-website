@@ -39,7 +39,7 @@ export default function CTABanner() {
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="#contact"
+            href="/contact"
             className="inline-flex items-center justify-center h-13 px-8 rounded-full bg-brand-orange text-white font-semibold text-base hover:bg-brand-orange/90 transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-brand-orange/25"
           >
             Book Your Free Assessment

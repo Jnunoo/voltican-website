@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 /**
@@ -10,15 +10,16 @@ import { usePathname } from 'next/navigation';
  * WITHOUT remounting React components. This means `whileInView` animations
  * that already fired (with `once: true`) never replay.
  *
- * Solution: track route changes and force a re-key on the root element so
- * React treats it as a fresh mount, letting Framer Motion reset its state.
+ * Solution: track route changes via useState (not useRef) so React sees the
+ * key change synchronously during render and treats the subtree as a fresh
+ * mount, resetting Framer Motion state.
  */
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const keyRef = useRef(pathname);
+  const [renderKey, setRenderKey] = useState(pathname);
 
   useEffect(() => {
-    keyRef.current = pathname;
+    setRenderKey(pathname);
     // Only scroll to top when there's no hash target — if there is one,
     // let the browser handle scrolling to the anchor naturally.
     if (!window.location.hash) {
@@ -26,5 +27,5 @@ export default function PageTransition({ children }: { children: React.ReactNode
     }
   }, [pathname]);
 
-  return <div key={keyRef.current} className="contents">{children}</div>;
+  return <div key={renderKey} className="contents">{children}</div>;
 }
